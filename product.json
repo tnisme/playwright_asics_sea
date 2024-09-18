@@ -1,0 +1,315 @@
+{
+  "dev": {
+    "en_SG": {
+      "vp1": {
+        "name": "GEL-KAYANO 30 WIDE",
+        "sku": "1011B685.003.10",
+        "price": 207.2,
+        "category": "Men's Running Shoes",
+        "url": "gel-kayano-30-wide/p/1011B685-003.html",
+        "size": "10",
+        "color": "BLACK/GLOW YELLOW",
+        "width": "WIDE (2E)",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2527567",
+        "store": {
+          "id": "SUN",
+          "name": "ASICS SUNTEC CITY",
+          "address1": "3 Temasek Boulevard",
+          "address2": "#02-476 Suntec City Mall",
+          "city": "Singapore",
+          "zip": "38983",
+          "country": "Singapore"
+        }
+      },
+      "vp2": {
+        "name": "GEL-KAYANO 30 WIDE",
+        "sku": "1011B685.003.10H",
+        "price": 207.2,
+        "category": "Men's Running Shoes",
+        "url": "gel-kayano-30-wide/p/1011B685-003.html",
+        "size": "10H",
+        "color": "BLACK/GLOW YELLOW",
+        "width": "WIDE (2E)",
+        "qty": 1,
+        "warehouseId": "M09",
+        "erpProductId": "2527577",
+        "store": null
+      },
+      "vp3": {
+        "name": "EASY QUARTER 3P",
+        "sku": "3023A026.101.S",
+        "price": 19,
+        "category": "Unisex Socks",
+        "url": "easy-quarter-3p/p/3023A026-101.html",
+        "size": "S",
+        "color": "BRILLIANT WHITE",
+        "width": "",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2308794",
+        "store": {
+          "id": "SUN",
+          "name": "ASICS SUNTEC CITY",
+          "address1": "3 Temasek Boulevard",
+          "address2": "#02-476 Suntec City Mall",
+          "city": "Singapore",
+          "zip": "38983",
+          "country": "Singapore"
+        }
+      }
+    },
+    "en_MY": {
+      "vp1": {
+        "name": "GEL-EXCITE 9",
+        "sku": "1011B338.016.8",
+        "price": 179.4,
+        "category": "Men's Running Shoes",
+        "url": "gel-excite-9/p/1011B338-016.html",
+        "size": "8",
+        "color": "BLACK/CHERRY TOMATO",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2438973",
+        "store": {
+          "id": "A06",
+          "name": "ASICS MID VALLEY SOUTHKEY",
+          "address1": "Lot T-024, 3rd Floor, Mid Valley Southkey",
+          "address2": "Persiaran Southkey 1, Southkey, Johor",
+          "city": "Johor Darul Takzim",
+          "zip": "80150",
+          "country": "Malaysia"
+        }
+      },
+      "vp2": {
+        "name": "GEL-EXCITE 9",
+        "sku": "1011B338.016.8H",
+        "price": 179.4,
+        "category": "Men's Running Shoes",
+        "url": "gel-excite-9/p/1011B338-016.html",
+        "size": "8H",
+        "color": "BLACK/CHERRY TOMATO",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "MY02",
+        "erpProductId": "2438983",
+        "store": null
+      },
+      "vp3": {
+        "name": "GEL-DEDICATE 8",
+        "sku": "1041A408.100.10H",
+        "price": 209.3,
+        "category": "Men's Tennis Shoes",
+        "url": "gel-dedicate-8/p/1041A408-100.html",
+        "size": "10H",
+        "color": "WHITE/ANTIQUE RED",
+        "width": "",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2547793",
+        "store": {
+          "id": "A06",
+          "name": "ASICS MID VALLEY SOUTHKEY",
+          "address1": "Lot T-024, 3rd Floor, Mid Valley Southkey",
+          "address2": "Persiaran Southkey 1, Southkey, Johor",
+          "city": "Johor Darul Takzim",
+          "zip": "80150",
+          "country": "Malaysia"
+        }
+      }
+    },
+    "en_PH": {
+      "vp1": {
+        "name": "GEL-NIMBUS 26 PLATINUM",
+        "sku": "1011B922.001.10",
+        "price": 11490,
+        "category": "Men Running Shoes",
+        "url": "gel-nimbus-26-platinum/p/1011B922-001.html",
+        "size": "10",
+        "color": "BLACK/CHAMPAGNE",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "weight": 0.6,
+        "warehouseId": "",
+        "erpProductId": "",
+        "store": {
+          "id": "4002",
+          "name": "ASICS SOLENAD DFO",
+          "address1": "Spaces 65-66 Solenad 2, 9014 GP National",
+          "address2": "Barangay Sto. Domingo, Sta. Rose, Laguna 4026",
+          "city": "Santo Domingo, Laguna",
+          "zip": "4026",
+          "country": "Philippines"
+        }
+      },
+      "vp2": {
+        "name": "GEL-NIMBUS 26 PLATINUM",
+        "sku": "1011B922.001.10H",
+        "price": 11490,
+        "category": "Men Running Shoes",
+        "url": "gel-nimbus-26-platinum/p/1011B922-001.html",
+        "size": "10H",
+        "color": "BLACK/CHAMPAGNE",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "weight": 0.6,
+        "warehouseId": "",
+        "erpProductId": "",
+        "store": {
+          "id": "4002",
+          "name": "ASICS SOLENAD DFO",
+          "address1": "Spaces 65-66 Solenad 2, 9014 GP National",
+          "address2": "Barangay Sto. Domingo, Sta. Rose, Laguna 4026",
+          "city": "Santo Domingo, Laguna",
+          "zip": "4026",
+          "country": "Philippines"
+        }
+      },
+      "vp3": {
+        "name": "GEL-NIMBUS 26 TR",
+        "sku": "1011B849.250.10",
+        "price": 10490,
+        "category": "Men Running Shoes",
+        "url": "gel-nimbus-26-tr/p/1011B849-250.html",
+        "size": "10",
+        "color": "NATURE BATHING/FELLOW YELLOW",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "weight": 0.6,
+        "warehouseId": "",
+        "erpProductId": "",
+        "store": {
+          "id": "4002",
+          "name": "ASICS SOLENAD DFO",
+          "address1": "Spaces 65-66 Solenad 2, 9014 GP National",
+          "address2": "Barangay Sto. Domingo, Sta. Rose, Laguna 4026",
+          "city": "Santo Domingo, Laguna",
+          "zip": "4026",
+          "country": "Philippines"
+        }
+      }
+    },
+    "th_TH": {
+      "vp1": {
+        "name": "NOVABLAST 4 LITE-SHOW",
+        "sku": "1011B846.400.10",
+        "price": 5500,
+        "category": "Men Running Shoes",
+        "url": "novablast-4-lite-show/p/1011B846-400.html",
+        "size": "10",
+        "color": "LITE-SHOW/SEA GLASS",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2578048",
+        "store": {
+          "id": "ASM",
+          "name": "ASICS Siam Premium Outlet",
+          "address1": "G40, Siam premium outlet No. 989 Moo.14",
+          "address2": "Bangsaothong, Bangsaothong ,Samutprakarn",
+          "city": "",
+          "zip": "10570",
+          "country": "Thailand"
+        }
+      },
+      "vp2": {
+        "name": "NOVABLAST 4 LITE-SHOW",
+        "sku": "1011B846.400.10H",
+        "price": 5500,
+        "category": "Men Running Shoes",
+        "url": "novablast-4-lite-show/p/1011B846-400.html",
+        "size": "10H",
+        "color": "LITE-SHOW/SEA GLASS",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "TH07",
+        "erpProductId": "2578047",
+        "store": null
+      },
+      "vp3": {
+        "name": "COURT FF 3",
+        "sku": "1041A370.001.10",
+        "price": 3250,
+        "category": "Men Tennis Shoes",
+        "url": "court-ff-3/p/1041A370-001.html",
+        "size": "10",
+        "color": "BLACK/HOT PINK",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2484045",
+        "store": {
+          "id": "ASM",
+          "name": "ASICS Siam Premium Outlet",
+          "address1": "G40, Siam premium outlet No. 989 Moo.14",
+          "address2": "Bangsaothong, Bangsaothong ,Samutprakarn",
+          "city": "",
+          "zip": "10570",
+          "country": "Thailand"
+        }
+      }
+    },
+    "vi_VN": {
+      "vp1": {
+        "name": "METASPEED SKY+",
+        "sku": "1013A115.700.10",
+        "price": 5881091,
+        "category": "Sportstyle",
+        "url": "metaspeed-sky%2B/p/1013A115-700.html",
+        "size": "10",
+        "color": "DIVA PINK/WHITE",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2539741",
+        "store": {
+          "id": "WEBPXSGC",
+          "name": "ASICS SÀI GÒN CENTRE - HCM",
+          "address1": "L4-08, 4th floor, Sai Gon Centre Buiding, no 65 Le Loi Street",
+          "address2": "Ben Nghe Ward, District 1, Ho Chi Minh city",
+          "city": "Ho Chi Minh",
+          "zip": "700000",
+          "country": "VietNam"
+        }
+      },
+      "vp2": {
+        "name": "ALL OVER PRINT SINGLET",
+        "sku": "2011C932.001.M",
+        "price": 775.636,
+        "category": "Men's Tank Tops",
+        "url": "all-over-print-singlet/p/2011C932-001.html",
+        "size": "M",
+        "color": "PERFORMANCE BLACK/ANTIQUE RED",
+        "width": "",
+        "qty": 1,
+        "warehouseId": "VN02",
+        "erpProductId": "2528708",
+        "store": null
+      },
+      "vp3": {
+        "name": "GEL-ROCKET 11",
+        "sku": "1073A065.600.10",
+        "price": 1855636,
+        "category": "Unisex Shoes",
+        "url": "gel-rocket-11/p/1073A065-600.html",
+        "size": "10",
+        "color": "CLASSIC RED/WHITE",
+        "width": "STANDARD (D)",
+        "qty": 1,
+        "warehouseId": "",
+        "erpProductId": "2526759",
+        "store": {
+          "id": "WEBPXSGC",
+          "name": "ASICS SÀI GÒN CENTRE - HCM",
+          "address1": "L4-08, 4th floor, Sai Gon Centre Buiding, no 65 Le Loi Street",
+          "address2": "Ben Nghe Ward, District 1, Ho Chi Minh city",
+          "city": "Ho Chi Minh",
+          "zip": "700000",
+          "country": "VietNam"
+        }
+      }
+    }
+  }
+}

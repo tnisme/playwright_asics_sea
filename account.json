@@ -1,0 +1,156 @@
+{
+  "dev": {
+    "en_SG": {
+      "customer1": {
+        "firstname": "auto",
+        "lastname": "sg",
+        "email": "icauto.asics+sg01@gmail.com",
+        "password": "Abc@123456",
+        "birthday": "15/01/1990",
+        "gender": "Male",
+        "default": {
+          "title": "MY ADDRESS",
+          "firstname": "Marshall",
+          "lastname": "Woods",
+          "zipcode": "449881",
+          "address1": "1202 East Coast Parkway",
+          "address2": "",
+          "city": "Singapore",
+          "state": "",
+          "phonenumber": "62454641",
+          "country": "Singapore"
+        }
+      }
+    },
+    "en_MY": {
+      "customer1": {
+        "firstname": "auto",
+        "lastname": "my",
+        "email": "icauto.asics+my01@gmail.com",
+        "password": "Abc@123456",
+        "birthday": "20/01/1990",
+        "gender": "Male",
+        "default": {
+          "title": "MY ADDRESS",
+          "firstname": "Albert",
+          "lastname": "Young",
+          "zipcode": "47400",
+          "address1": "74 Jalan SS 21/35",
+          "address2": "",
+          "city": "Petaling Jaya",
+          "state": "Selangor",
+          "phonenumber": "103772952",
+          "country": "Malaysia"
+        }
+      }
+    },
+    "en_PH": {
+      "customer1": {
+        "firstname": "auto",
+        "lastname": "ph",
+        "email": "icauto.asics+ph01@gmail.com",
+        "password": "Abc@123456",
+        "birthday": "20/01/1990",
+        "gender": "Male",
+        "default": {
+          "title": "MY ADDRESS",
+          "firstname": "Adriana",
+          "lastname": "Hughes",
+          "zipcode": "3500",
+          "address1": "112 Taft corner Gonzaga St.",
+          "address2": "",
+          "city": "Tuguegarao City",
+          "state": "Cagayan",
+          "barangay": "Bagay",
+          "phonenumber": "9165811721",
+          "country": "Philippines"
+        }
+      }
+    },
+    "th_TH": {
+      "customer1": {
+        "firstname": "auto",
+        "lastname": "th",
+        "email": "icauto.asics+th01@gmail.com",
+        "password": "Abc@123456",
+        "birthday": "20/01/1990",
+        "gender": "Male",
+        "default": {
+          "title": "MY ADDRESS",
+          "firstname": "auto",
+          "lastname": "th",
+          "zipcode": "10250",
+          "address1": "2723 New Phetburi Suan Luang Suan Luang",
+          "address2": "",
+          "city": "Bangkok",
+          "state": "Bangkok Metropolis",
+          "phonenumber": "291866621",
+          "country": "Thailand"
+        }
+      }
+    },
+    "vi_VN": {
+      "customer1": {
+        "firstname": "Karley",
+        "lastname": "Swift",
+        "email": "icauto.asics+vn01@gmail.com",
+        "password": "Abc@123456",
+        "birthday": "15/01/1990",
+        "gender": "Male",
+        "default": {
+          "title": "MY ADDRESS",
+          "firstname": "Karley",
+          "lastname": "Swift",
+          "zipcode": "",
+          "address1": "178A Hai Ba Trung Street, Da Kao Ward",
+          "address2": "",
+          "city": "Thành phố Hồ Chí Minh",
+          "state": "Quận 1",
+          "ward": "Phường Bến Nghé",
+          "phonenumber": "0613829740",
+          "country": "Việt Nam"
+        }
+      }
+    }
+  },
+  "bm": {
+    "user": "hon.trang@isobar.com",
+    "password": "Abc@Abc123459"
+  },
+  "paypal": {
+    "user": "ic.paypal_au@gmail.com",
+    "password": "Admin@123"
+  },
+  "ayden": {
+    "user": "hienluu",
+    "password": "Henry!@#$%202307"
+  },
+  "afterpay": {
+    "user": "hieu.hoang@isobar.com",
+    "password": "tden4WiYSV"
+  },
+  "sfsc": {
+    "user": "nhimy.dinh@merkle.com.seaomsstg",
+    "password": "Admin@123456"
+  },
+  "worldpay": {
+    "user": "thaohoang",
+    "password": "Asics1234@1111"
+  },
+  "atome": {
+    "user": "asics1_sg",
+    "password": "4F8xUd1I"
+  },
+  "bankingOnline": {
+    "user": "Gaara",
+    "password": "letmepaywithsand"
+  },
+  "payment2c2p": {
+    "user": "kumar.swamy@asics.com",
+    "password": "A$ic$@1234"
+  },
+  "onepay": {
+    "user": "testonepay@onepay.vn",
+    "password": "Abc123456"
+  }
+}
