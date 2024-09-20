@@ -3,7 +3,7 @@ const testSuites = {
         '*/tests/example.spec.ts',
     ],
     "suite2": [
-        '*/tests/a.spec.ts',
+        '*/tests/api.spec.ts',
     ],
     'all': ['**/*.spec.ts']
 }
