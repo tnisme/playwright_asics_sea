@@ -11,7 +11,7 @@ export class Omnichannel {
             grant_type: "client_credentials",
             scope: "SALESFORCE_COMMERCE_API:bksc_dev sfcc.inventory.impex-event-log sfcc.inventory.impex-graphs sfcc.inventory.impex-graphs.rw sfcc.inventory.impex-inventory.rw sfcc.inventory.impex-inventory sfcc.inventory.availability sfcc.inventory.availability.rw sfcc.inventory.reservations sfcc.inventory.reservations.rw sfcc.inventory.admin.rw"
         })
-        const response: APIResponse = await request.post(process.env.BASE_URL + process.env.ENDPOINT_GET_TOKEN_API, {
+        const response: APIResponse = await request.post(process.env.BASE_URL_API + process.env.ENDPOINT_GET_TOKEN_API, {
             data: body,
             headers: {
                 'Content-Type': RESTConstants.CONTENT_X_WWW_FORM_URLENCODED,
