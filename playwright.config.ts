@@ -26,7 +26,19 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: Number.parseInt(process.env.PARALLEL_THREAD, 10),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
+  reporter: [
+    ["list"],
+    ["allure-playwright", {
+      detail: false,
+      suiteTitle: false,
+      environmentInfo: {
+        OS: process.platform.toUpperCase(),
+        BROWSER: process.env.BROWSER.toUpperCase(),
+        BASE_URL: process.env.BASE_URL,
+        NODE_VERSION: process.version,
+      },
+    }],
+  ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
@@ -44,7 +56,7 @@ export default defineConfig({
     launchOptions: {
       args: ["--start-maximized", "--disable-extensions", "--disable-plugins"],
       headless: false,
-      timeout: Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10),
+      timeout: Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInMin,
       slowMo: 100,
       downloadsPath: "./test-results/downloads",
     },
