@@ -1,5 +1,7 @@
 import {test} from "@playwright/test";
 
-test("test1", async ({page}) => {
-    console.log('last vn')
-})
+export default function test3VN() {
+    test("test3vn", async ({page}) => {
+        console.log('last vn')
+    })
+}
