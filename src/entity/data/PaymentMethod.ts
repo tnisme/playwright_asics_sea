@@ -1,0 +1,3 @@
+export enum PaymentMethod {
+    CREDIT_CARD, ATOME, E_WALLET, ONLINE_BANKING, CASH_ON_DELIVERY, QR_PAYMENT
+}

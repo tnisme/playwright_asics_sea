@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import RESTConstants from '../API/RESTConstants';
 
 export class Omnichannel {
+    //TODO make it singleton
 
     private static async getToken(request: APIRequestContext): Promise<string> {
 

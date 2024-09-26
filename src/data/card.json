@@ -1,0 +1,300 @@
+{
+  "en_SG": {
+    "Visa": {
+      "name": "test",
+      "number": "4444333322221111",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "Visa2": {
+      "name": "test",
+      "number": "4911830000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "Visa3": {
+      "name": "test",
+      "number": "4917610000000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "VisaDebit1": {
+      "name": "test",
+      "number": "4462030000000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "VisaDebit2": {
+      "name": "test",
+      "number": "4917610000000000003",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "Visa Electron": {
+      "name": "test",
+      "number": "4917300800000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "Visa Purchasing": {
+      "name": "test",
+      "number": "4484070000000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Visa"
+    },
+    "Amex": {
+      "name": "test",
+      "number": "34343434343434",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Airplus": {
+      "name": "test",
+      "number": "122000000000003",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Cartebleue": {
+      "name": "test",
+      "number": "5555555555554444",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Dankort": {
+      "name": "test",
+      "number": "5019717010103742",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Diners1": {
+      "name": "test",
+      "number": "36700102000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Diners2": {
+      "name": "test",
+      "number": "36148900647913",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Discover card": {
+      "name": "test",
+      "number": "6011000400000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "JCB": {
+      "name": "test",
+      "number": "3528000700000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Laser1": {
+      "name": "test",
+      "number": "630495060000000000",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Laser2": {
+      "name": "test",
+      "number": "630490017740292441",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Maestro1": {
+      "name": "test",
+      "number": "6759649826438453",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Maestro2": {
+      "name": "test",
+      "number": "6799990100000000019",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Amex"
+    },
+    "Mastercard": {
+      "name": "test",
+      "number": "5555555555554444",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Master"
+    },
+    "Mastercard2": {
+      "name": "test",
+      "number": "5454545454545454",
+      "month": "03",
+      "year": "2030",
+      "cid": "737",
+      "type": "Master"
+    }
+  },
+  "en_MY": {
+    "Visa": {
+      "name": "test",
+      "number": "4111111111111111",
+      "month": "03",
+      "year": "2030",
+      "cid": "111",
+      "type": "Visa"
+    },
+    "Visa2": {
+      "name": "test",
+      "number": "4012888888881881",
+      "month": "03",
+      "year": "2030",
+      "cid": "111",
+      "type": "Visa"
+    },
+    "Mastercard": {
+      "name": "test",
+      "number": "5105105105105100",
+      "month": "03",
+      "year": "2030",
+      "cid": "444",
+      "type": "Master"
+    },
+    "Mastercard2": {
+      "name": "test",
+      "number": "5555555555554444",
+      "month": "03",
+      "year": "2030",
+      "cid": "444",
+      "type": "Master"
+    },
+    "NegativeTest1": {
+      "name": "test",
+      "number": "5555555555554440",
+      "month": "03",
+      "year": "2030",
+      "cid": "444",
+      "type": "Visa"
+    },
+    "NegativeTest2": {
+      "name": "test",
+      "number": "4111111111111110",
+      "month": "03",
+      "year": "2030",
+      "cid": "111",
+      "type": "Visa"
+    }
+  },
+  "en_PH": {
+    "Visa": {
+      "name": "test",
+      "number": "4333880000200019",
+      "month": "07",
+      "year": "2030",
+      "cid": "123",
+      "type": "Visa"
+    },
+    "Mastercard": {
+      "name": "test",
+      "number": "5422880000200018",
+      "month": "07",
+      "year": "2030",
+      "cid": "123",
+      "type": "Master"
+    },
+    "JCB": {
+      "name": "test",
+      "number": "3518910000200013",
+      "month": "07",
+      "year": "2030",
+      "cid": "123",
+      "type": "JCB"
+    }
+  },
+  "th_TH": {
+    "Visa": {
+      "name": "test",
+      "number": "4111111111111111",
+      "month": "03",
+      "year": "2030",
+      "cid": "111",
+      "type": "Visa"
+    },
+    "Mastercard": {
+      "name": "test",
+      "number": "5555555555554444",
+      "month": "03",
+      "year": "2030",
+      "cid": "444",
+      "type": "Master"
+    }
+  },
+  "vi_VN": {
+    "Visa": {
+      "name": "test",
+      "number": "4000000000001091",
+      "month": "05",
+      "year": "2030",
+      "cid": "123",
+      "type": "Visa"
+    },
+    "Mastercard": {
+      "name": "test",
+      "number": "5123450000000008",
+      "month": "05",
+      "year": "2030",
+      "cid": "123",
+      "type": "Master"
+    },
+    "ABB": {
+      "name": "NGUYEN VAN A",
+      "number": "9704250000000001",
+      "month": "01",
+      "year": "13",
+      "cid": "123456",
+      "type": "ATM"
+    },
+    "VCB": {
+      "name": "NGUYEN VAN A",
+      "number": "9704360000000000002",
+      "month": "01",
+      "year": "13",
+      "cid": "123456",
+      "type": "ATM"
+    }
+  }
+}

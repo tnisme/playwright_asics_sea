@@ -1,0 +1,3 @@
+export enum ShippingMethod {
+    STANDARD, NEXT_DAY, CLICK_AND_COLLECT, WEIGHT_LOCATION
+}

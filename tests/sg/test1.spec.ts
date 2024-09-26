@@ -1,5 +1,7 @@
 import {test} from "@playwright/test";
 
-test("test1", async ({page}) => {
-    console.log('first sg')
-})
+export default function test1SG() {
+    test("test1sg", async ({page}) => {
+        console.log('first sg')
+    })
+}
