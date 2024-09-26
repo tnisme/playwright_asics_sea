@@ -1,36 +1,4 @@
-interface AddressAttributes {
-    title: string;
-    firstName: string;
-    lastName: string;
-    zipCode: string;
-    city: string;
-    state: string;
-    address1: string;
-    address2: string;
-    phoneNumber: string;
-    country: string;
-    ward: string;
-    barangay: string;
-}
-
-interface AddressBuilder {
-    setTitle(title: string): AddressBuilder;
-    setFirstName(firstName: string): AddressBuilder;
-    setLastName(lastName: string): AddressBuilder;
-    setZipCode(zipCode: string): AddressBuilder;
-    setCity(city: string): AddressBuilder;
-    setState(state: string): AddressBuilder;
-    setAddress1(address1: string): AddressBuilder;
-    setAddress2(address2: string): AddressBuilder;
-    setPhoneNumber(phoneNumber: string): AddressBuilder;
-    setCountry(country: string): AddressBuilder;
-    setWard(ward: string): AddressBuilder;
-    setBarangay(barangay: string): AddressBuilder;
-    build(): AddressAttributes;
-}
-
-export default class Address implements AddressBuilder {
-
+export class Address {
     private title: string;
     private firstName: string;
     private lastName: string;
@@ -44,80 +12,147 @@ export default class Address implements AddressBuilder {
     private ward: string;
     private barangay: string;
 
-    setTitle(title: string): AddressBuilder {
-        this.title = title;
+    constructor(addressBuilder: AddressBuilder) {
+        this['title'] = addressBuilder['title'];
+        this['firstName'] = addressBuilder['firstName'];
+        this['lastName'] = addressBuilder['lastName'];
+        this['zipCode'] = addressBuilder['zipCode'];
+        this['city'] = addressBuilder['city'];
+        this['state'] = addressBuilder['state'];
+        this['address1'] = addressBuilder['address1'];
+        this['address2'] = addressBuilder['address2'];
+        this['phoneNumber'] = addressBuilder['phoneNumber'];
+        this['country'] = addressBuilder['country'];
+        this['ward'] = addressBuilder['ward'];
+        this['barangay'] = addressBuilder['barangay'];
+    }
+
+    getTitle(): string {
+        return this.title;
+    }
+
+    getFirstName(): string {
+        return this.firstName;
+    }
+
+    getLastName(): string {
+        return this.lastName;
+    }
+
+    getZipCode(): string {
+        return this.zipCode;
+    }
+
+    getCity(): string {
+        return this.city;
+    }
+
+    getState(): string {
+        return this.state;
+    }
+
+    getAddress1(): string {
+        return this.address1;
+    }
+
+    getAddress2(): string {
+        return this.address2;
+    }
+
+    getPhoneNumber(): string {
+        return this.phoneNumber;
+    }
+
+    getCountry(): string {
+        return this.country;
+    }
+
+    getWard(): string {
+        return this.ward;
+    }
+
+    getBarangay(): string {
+        return this.barangay;
+    }
+}
+
+export class AddressBuilder {
+    private title: string;
+    private firstName: string;
+    private lastName: string;
+    private zipCode: string;
+    private city: string;
+    private state: string;
+    private address1: string;
+    private address2: string;
+    private phoneNumber: string;
+    private country: string;
+    private ward: string;
+    private barangay: string;
+
+    private static instance: AddressBuilder = new AddressBuilder();
+
+    static setTitle(title: string): typeof AddressBuilder {
+        this.instance['title'] = title;
         return this;
     }
 
-    setAddress1(address1: string): AddressBuilder {
-        this.address1 = address1;
+    static setFirstName(firstName: string): typeof AddressBuilder {
+        this.instance['firstName'] = firstName;
         return this;
     }
 
-    setAddress2(address2: string): AddressBuilder {
-        this.address2 = address2;
+    static setLastName(lastName: string): typeof AddressBuilder {
+        this.instance['lastName'] = lastName;
         return this;
     }
 
-    setBarangay(barangay: string): AddressBuilder {
-        this.barangay = barangay;
+    static setZipCode(zipCode: string): typeof AddressBuilder {
+        this.instance['zipCode'] = zipCode;
         return this;
     }
 
-    setCity(city: string): AddressBuilder {
-        this.city = city;
+    static setCity(city: string): typeof AddressBuilder {
+        this.instance['city'] = city;
         return this;
     }
 
-    setCountry(country: string): AddressBuilder {
-        this.country = country;
+    static setState(state: string): typeof AddressBuilder {
+        this.instance['state'] = state;
         return this;
     }
 
-    setFirstName(firstName: string): AddressBuilder {
-        this.firstName = firstName;
+    static setAddress1(address1: string): typeof AddressBuilder {
+        this.instance['address1'] = address1;
         return this;
     }
 
-    setLastName(lastName: string): AddressBuilder {
-        this.lastName = lastName;
+    static setAddress2(address2: string): typeof AddressBuilder {
+        this.instance['address2'] = address2;
         return this;
     }
 
-    setPhoneNumber(phoneNumber: string): AddressBuilder {
-        this.phoneNumber = phoneNumber;
+    static setPhoneNumber(phoneNumber: string): typeof AddressBuilder {
+        this.instance['phoneNumber'] = phoneNumber;
         return this;
     }
 
-    setState(state: string): AddressBuilder {
-        this.state = state;
+    static setCountry(country: string): typeof AddressBuilder {
+        this.instance['country'] = country;
         return this;
     }
 
-    setWard(ward: string): AddressBuilder {
-        this.ward = ward;
+    static setWard(ward: string): typeof AddressBuilder {
+        this.instance['ward'] = ward;
         return this;
     }
 
-    setZipCode(zipCode: string): AddressBuilder {
-        this.zipCode = zipCode;
+    static setBarangay(barangay: string): typeof AddressBuilder {
+        this.instance['barangay'] = barangay;
         return this;
     }
 
-    build(): AddressAttributes {
-        return {
-            title: this.title,
-            firstName: this.firstName,
-            lastName: this.lastName,
-            zipCode: this.zipCode,
-            city: this.city,
-            state: this.state,
-            address1: this.address1,
-            address2: this.address2,
-            phoneNumber: this.phoneNumber,
-            country: this.country,
-            ward: this.ward,
-            barangay: this.barangay
-        };
+    static build(): Address {
+        return new Address(this.instance);
     }
 }

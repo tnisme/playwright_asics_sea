@@ -1,31 +1,6 @@
-import Address from "./Address";
+import {Address} from "./Address";
 
-interface Customer {
-    firstName: string;
-    lastName: string;
-    title: string | undefined;
-    signUpForNewsletter: string | undefined;
-    email: string;
-    password: string;
-    birthDay: string | undefined;
-    gender: string | undefined;
-    address: Address | undefined;
-}
-
-interface CustomerBuilder {
-    setFirstName(firstName: string): CustomerBuilder;
-    setLastName(lastName: string): CustomerBuilder;
-    setTitle(title: string): CustomerBuilder;
-    setSignUpForNewsletter(signUpForNewsletter: string): CustomerBuilder;
-    setEmail(email: string): CustomerBuilder;
-    setPassword(password: string): CustomerBuilder;
-    setBirthDay(birthDay: string): CustomerBuilder;
-    setGender(gender: string): CustomerBuilder;
-    setAddress(address: Address): CustomerBuilder;
-    build(): Customer;
-}
-
-export default class CustomerInformation implements CustomerBuilder {
+export class Customer {
     private firstName: string;
     private lastName: string;
     private title: string | undefined;
@@ -36,62 +11,115 @@ export default class CustomerInformation implements CustomerBuilder {
     private gender: string | undefined;
     private address: Address | undefined;
 
-    setAddress(address: Address): CustomerBuilder {
-        this.address = address;
+    constructor(customerBuilder: CustomerBuilder) {
+        this['firstName'] = customerBuilder['firstName'];
+        this['lastName'] = customerBuilder['lastName'];
+        this['title'] = customerBuilder['title'];
+        this['signUpForNewsletter'] = customerBuilder['signUpForNewsletter'];
+        this['email'] = customerBuilder['email'];
+        this['password'] = customerBuilder['password'];
+        this['birthDay'] = customerBuilder['birthDay'];
+        this['gender'] = customerBuilder['gender'];
+        this['address'] = customerBuilder['address'];
+    }
+
+    getFirstName(): string {
+        return this.firstName;
+    }
+
+    getLastName(): string {
+        return this.lastName;
+    }
+
+    getTitle(): string | undefined {
+        return this.title;
+    }
+
+    getSignUpForNewsletter(): string | undefined {
+        return this.signUpForNewsletter;
+    }
+
+    getEmail(): string {
+        return this.email;
+    }
+
+    getPassword(): string {
+        return this.password;
+    }
+
+    getBirthDay(): string | undefined {
+        return this.birthDay;
+    }
+
+    getGender(): string | undefined {
+        return this.gender;
+    }
+
+    getAddress(): Address | undefined {
+        return this.address;
+    }
+}
+
+export class CustomerBuilder {
+
+    private firstName: string;
+    private lastName: string;
+    private title: string | undefined;
+    private signUpForNewsletter: string | undefined;
+    private email: string;
+    private password: string;
+    private birthDay: string | undefined;
+    private gender: string | undefined;
+    private address: Address | undefined;
+
+    private static instance: CustomerBuilder = new CustomerBuilder();
+
+    static setFirstName(firstName: string): typeof CustomerBuilder {
+        this.instance['firstName'] = firstName;
         return this;
     }
 
-    setBirthDay(birthDay: string): CustomerBuilder {
-        this.birthDay = birthDay;
+    static setLastName(lastName: string): typeof CustomerBuilder {
+        this.instance['lastName'] = lastName;
         return this;
     }
 
-    setEmail(email: string): CustomerBuilder {
-        this.email = email;
+    static setTitle(title: string): typeof CustomerBuilder {
+        this.instance['title'] = title;
         return this;
     }
 
-    setFirstName(firstName: string): CustomerBuilder {
-        this.firstName = firstName;
+    static setSignUpForNewsletter(signUpForNewsletter: string): typeof CustomerBuilder {
+        this.instance['signUpForNewsletter'] = signUpForNewsletter;
         return this;
     }
 
-    setGender(gender: string): CustomerBuilder {
-        this.gender = gender;
+    static setEmail(email: string): typeof CustomerBuilder {
+        this.instance['email'] = email;
         return this;
     }
 
-    setLastName(lastName: string): CustomerBuilder {
-        this.lastName = lastName;
+    static setPassword(password: string): typeof CustomerBuilder {
+        this.instance['password'] = password;
         return this;
     }
 
-    setPassword(password: string): CustomerBuilder {
-        this.password = password;
+    static setBirthDay(birthDay: string): typeof CustomerBuilder {
+        this.instance['birthDay'] = birthDay;
         return this;
     }
 
-    setSignUpForNewsletter(signUpForNewsletter: string): CustomerBuilder {
-        this.signUpForNewsletter = signUpForNewsletter;
+    static setGender(gender: string): typeof CustomerBuilder {
+        this.instance['gender'] = gender;
         return this;
     }
 
-    setTitle(title: string): CustomerBuilder {
-        this.title = title;
+    static setAddress(address: Address): typeof CustomerBuilder {
+        this.instance['address'] = address;
         return this;
     }
 
-    build(): Customer {
-        return {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            title: this.title,
-            signUpForNewsletter: this.signUpForNewsletter,
-            email: this.email,
-            password: this.password,
-            birthDay: this.birthDay,
-            gender: this.gender,
-            address: this.address,
-        };
+    static build(): Customer {
+        return new Customer(this.instance);
     }
 }
