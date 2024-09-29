@@ -10,7 +10,7 @@ enum BrowserConstants {
 
 export default class Browser {
     public static type(browser: string) {
-        let browserType;
+        let browserType: BrowserConstants;
         if (browser === BrowserConstants.FIREFOX) {
             browserType = BrowserConstants.FIREFOX;
         } else if (browser === BrowserConstants.WEBKIT) {
@@ -22,7 +22,7 @@ export default class Browser {
     }
 
     public static channel(browser: string) {
-        let browserChannel;
+        let browserChannel: BrowserConstants;
         if (browser === BrowserConstants.CHROME) {
             browserChannel = BrowserConstants.CHROME;
         } else if (browser === BrowserConstants.EDGE) {
