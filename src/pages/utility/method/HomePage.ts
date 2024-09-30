@@ -2,6 +2,7 @@ import {Page} from "@playwright/test";
 import HomeLocator from "../locator/HomeLocator";
 import ProductListPage from "../../product/method/ProductListPage";
 import LoginPage from "./LoginPage";
+import ShoppingCartPage from "../../cart/method/ShoppingCartPage";
 
 export default class HomePage {
 
@@ -29,5 +30,12 @@ export default class HomePage {
 
     async isCartEmpty(): Promise<boolean> {
         return await this.page.isVisible(HomeLocator.miniCartCounter, {timeout: 3000});
+    }
+
+    async viewCart(): Promise<ShoppingCartPage> {
+        await this.page.click(HomeLocator.cart);
+        await this.page.click(HomeLocator.viewCart);
+        await this.page.waitForLoadState();
+        return new ShoppingCartPage(this.page);
     }
 }

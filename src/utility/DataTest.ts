@@ -80,6 +80,23 @@ export class DataTest {
             .build();
     }
 
+    static getVariationProduct2(): VariationProduct {
+        const product = variationProductJSON[process.env.ENVIRONMENT][process.env.LOCATE].vp2;
+        return VariationProductBuilder
+            .setName(product.name)
+            .setSku(product.sku)
+            .setPrice(product.price)
+            .setCategory(product.category)
+            .setUrl(product.url)
+            .setSize(product.size)
+            .setColor(product.color)
+            .setWidth(product.width)
+            .setQuantity(product.quantity)
+            .setErpProductId(product.erpProductId)
+            .setWarehouseId(product.warehouseId)
+            .build();
+    }
+
     static getCard(creditCardType: CreditCardType): CreditCard {
         const card = cardJSON[process.env.LOCATE][creditCardType];
         return CreditCardBuilder

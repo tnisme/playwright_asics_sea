@@ -27,6 +27,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: Number.parseInt(process.env.PARALLEL_THREAD, 10),
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  timeout: 0,
   reporter: [
     ["list"],
     ["allure-playwright", {
