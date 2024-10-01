@@ -35,8 +35,8 @@ export class DataTest {
         const defaultAddress = customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1.default;
         return AddressBuilder
             .setTitle(defaultAddress.title)
-            .setFirstName(faker.person.firstName())
-            .setLastName(faker.person.lastName())
+            .setFirstName(defaultAddress.firstname)
+            .setLastName(defaultAddress.lastname)
             .setZipCode(defaultAddress.zipcode)
             .setAddress1(defaultAddress.address1)
             .setAddress2(defaultAddress.address2)
@@ -51,8 +51,8 @@ export class DataTest {
         const defaultAddress = customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1.default;
         return AddressBuilder
             .setTitle(defaultAddress.title)
-            .setFirstName(defaultAddress.firstname)
-            .setLastName(defaultAddress.lastname)
+            .setFirstName(faker.person.firstName())
+            .setLastName(faker.person.lastName())
             .setZipCode(defaultAddress.zipcode)
             .setAddress1(defaultAddress.address1)
             .setAddress2(defaultAddress.address2)
@@ -65,6 +65,23 @@ export class DataTest {
 
     static getVariationProduct1(): VariationProduct {
         const product = variationProductJSON[process.env.ENVIRONMENT][process.env.LOCATE].vp1;
+        return VariationProductBuilder
+            .setName(product.name)
+            .setSku(product.sku)
+            .setPrice(product.price)
+            .setCategory(product.category)
+            .setUrl(product.url)
+            .setSize(product.size)
+            .setColor(product.color)
+            .setWidth(product.width)
+            .setQuantity(product.quantity)
+            .setErpProductId(product.erpProductId)
+            .setWarehouseId(product.warehouseId)
+            .build();
+    }
+
+    static getVariationProduct2(): VariationProduct {
+        const product = variationProductJSON[process.env.ENVIRONMENT][process.env.LOCATE].vp2;
         return VariationProductBuilder
             .setName(product.name)
             .setSku(product.sku)

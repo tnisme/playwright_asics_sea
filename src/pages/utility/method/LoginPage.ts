@@ -11,7 +11,7 @@ export default class LoginPage {
         await this.page.locator(LoginLocator.username).fill(customer.getEmail());
         await this.page.locator(LoginLocator.password).fill(customer.getPassword());
         await this.page.locator(LoginLocator.login).click();
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('load');
         return new HomePage(this.page);
     }
 }

@@ -5,5 +5,7 @@ export default class HomeLocator {
     static readonly register = ".login__buttons a[href*='?action=register']";
     static readonly miniCartCounter = 'span.mini-cart-quantity';
     static readonly search = '#q';
+    static readonly cart = 'svg.icon.shopping-cart';
+    static readonly viewCart = 'a.cart-draw__cta.button';
 
 }
