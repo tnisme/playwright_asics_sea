@@ -1,16 +1,18 @@
 import {Page} from "@playwright/test";
-import HomeLocator from "../locator/HomeLocator";
 import ProductListPage from "../../product/method/ProductListPage";
 import LoginPage from "./LoginPage";
 import ShoppingCartPage from "../../cart/method/ShoppingCartPage";
+import {HomeLocator} from "../locator/HomeLocator";
 
-export default class HomePage {
-
-    constructor(private page: Page) {
+export default class HomePage extends HomeLocator{
+    private page: Page;
+    constructor(page: Page) {
+        super();
+        this.page = page;
     }
 
     async isGuest(): Promise<boolean> {
-        return await this.page.isVisible(HomeLocator.logout, {timeout: 2000});
+        return await this.page.isVisible(this.logout, {timeout: 2000});
     }
 
     async goToLoginPage(): Promise<LoginPage> {
@@ -22,7 +24,7 @@ export default class HomePage {
     }
 
     async search(key: string): Promise<ProductListPage> {
-        await this.page.fill(HomeLocator.search, key);
+        await this.page.fill(this.searchLocator, key);
         await this.page.keyboard.press('Enter');
         await this.page.waitForLoadState('load');
         return new ProductListPage(this.page);
