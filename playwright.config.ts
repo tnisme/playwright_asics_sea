@@ -59,7 +59,7 @@ export default defineConfig({
       args: ["--start-maximized", "--disable-extensions", "--disable-plugins"],
       headless: false,
       timeout: Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInMin,
-      slowMo: 100,
+      slowMo: 500,
       downloadsPath: "./test-results/downloads",
     },
     viewport: null,

@@ -35,8 +35,8 @@ export class DataTest {
         const defaultAddress = customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1.default;
         return AddressBuilder
             .setTitle(defaultAddress.title)
-            .setFirstName(faker.person.firstName())
-            .setLastName(faker.person.lastName())
+            .setFirstName(defaultAddress.firstname)
+            .setLastName(defaultAddress.lastname)
             .setZipCode(defaultAddress.zipcode)
             .setAddress1(defaultAddress.address1)
             .setAddress2(defaultAddress.address2)
@@ -51,8 +51,8 @@ export class DataTest {
         const defaultAddress = customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1.default;
         return AddressBuilder
             .setTitle(defaultAddress.title)
-            .setFirstName(defaultAddress.firstname)
-            .setLastName(defaultAddress.lastname)
+            .setFirstName(faker.person.firstName())
+            .setLastName(faker.person.lastName())
             .setZipCode(defaultAddress.zipcode)
             .setAddress1(defaultAddress.address1)
             .setAddress2(defaultAddress.address2)

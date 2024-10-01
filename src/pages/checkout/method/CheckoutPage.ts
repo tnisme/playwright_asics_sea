@@ -3,6 +3,8 @@ import CheckoutLocator from "../locator/CheckoutLocator";
 import {Address} from "../../../entity/customer/Address";
 import {Customer} from "../../../entity/customer/Customer";
 import {ShippingMethod, ShippingMethodUtils} from "../../../entity/data/ShippingMethod";
+import {PaymentMethod, PaymentMethodUtils} from "../../../entity/data/PaymentMethod";
+import WorldPayPage from "../../worldPay/method/WorldPayPage";
 
 export default class CheckoutPage {
 
@@ -20,7 +22,7 @@ export default class CheckoutPage {
             await this.setShippingState(address.getState());
             await this.setShippingWard(address.getWard());
         } else {
-            if (process.env.LOCATE == 'en_SG') {
+            if (process.env.LOCATE != 'en_SG') {
                 await this.setShippingState(address.getState());
                 await this.setShippingCity(address.getCity());
             }
@@ -36,11 +38,29 @@ export default class CheckoutPage {
     }
 
     async submitShipping() {
-        await this.page.click(CheckoutLocator.submitShipping);
+        await this.page.click(CheckoutLocator.submitShippingAddress);
     }
 
     async setShippingMethod(shippingMethod: ShippingMethod) {
         await this.page.setChecked(CheckoutLocator.shippingMethod(ShippingMethodUtils.getId(shippingMethod)), true);
+    }
+
+    async submitShippingMethod() {
+        await this.page.click(CheckoutLocator.submitShippingMethod);
+    }
+
+    async setPaymentMethod(paymentMethod: PaymentMethod) {
+        await this.page.setChecked(CheckoutLocator.paymentMethod(PaymentMethodUtils.getValue(paymentMethod)), true);
+    }
+
+    async placeOrder(paymentMethod: PaymentMethod): Promise<any> {
+        await this.page.click(CheckoutLocator.placeOrder);
+        await this.page.waitForLoadState('load');
+        switch (paymentMethod) {
+            case PaymentMethod.CREDIT_CARD: {
+                if (process.env.LOCATE == 'en_SG') return new WorldPayPage(this.page);
+            }
+        }
     }
 
     private async setShippingFirstName(firstName: string) {
@@ -56,15 +76,19 @@ export default class CheckoutPage {
     }
 
     private async setShippingCity(city: string) {
-        await this.page.fill(CheckoutLocator.shippingCity, city);
+        if (process.env.LOCATE == 'vi_VN' || process.env.LOCATE == 'en_PH') {
+            await this.page.selectOption(CheckoutLocator.shippingCity, city);
+        } else {
+            await this.page.fill(CheckoutLocator.shippingCity, city);
+        }
     }
 
     private async setShippingState(state: string) {
-        await this.page.fill(CheckoutLocator.shippingState, state);
+        await this.page.selectOption(CheckoutLocator.shippingState, state);
     }
 
     private async setShippingBangaray(bangaray: string) {
-        await this.page.fill(CheckoutLocator.shippingBangaray, bangaray);
+        await this.page.selectOption(CheckoutLocator.shippingBangaray, bangaray);
     }
 
     private async setShippingWard(ward: string) {

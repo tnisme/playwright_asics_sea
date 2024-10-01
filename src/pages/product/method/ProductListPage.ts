@@ -15,8 +15,10 @@ export default class ProductListPage {
     }
 
     async viewProductDetail(product: Product): Promise<ProductDetailPage> {
-        await this.page.click(ProductListLocator.productItem(product.getUrl()));
-        await this.page.waitForLoadState();
+        if (!this.page.url().includes(product.getUrl())) {
+            await this.page.click(ProductListLocator.productItem(product.getUrl()));
+            await this.page.waitForLoadState('load');
+        }
         return new ProductDetailPage(this.page);
     }
 

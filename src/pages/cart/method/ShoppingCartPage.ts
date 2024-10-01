@@ -9,7 +9,15 @@ export default class ShoppingCartPage {
 
     async checkout(): Promise<CheckoutPage> {
         await this.page.click(ShoppingCartLocator.checkoutButton);
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('load');
         return new CheckoutPage(this.page);
+    }
+
+    async isHasDiscountOrder(): Promise<boolean> {
+        return await this.page.isVisible(ShoppingCartLocator.discountOrder);
+    }
+
+    async getDiscountOrderAmount(): Promise<number> {
+        return parseFloat(await this.page.innerText(ShoppingCartLocator.discountOrder));
     }
 }

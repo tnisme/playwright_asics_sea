@@ -15,16 +15,16 @@ export default class HomePage {
 
     async goToLoginPage(): Promise<LoginPage> {
         await this.page.click(HomeLocator.myAccount);
-        await this.page.waitForLoadState()
+        await this.page.waitForLoadState('load')
         await this.page.click(HomeLocator.login);
-        await this.page.waitForLoadState()
+        await this.page.waitForLoadState('load')
         return new LoginPage(this.page);
     }
 
     async search(key: string): Promise<ProductListPage> {
         await this.page.fill(HomeLocator.search, key);
         await this.page.keyboard.press('Enter');
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('load');
         return new ProductListPage(this.page);
     }
 
@@ -33,9 +33,9 @@ export default class HomePage {
     }
 
     async viewCart(): Promise<ShoppingCartPage> {
-        await this.page.click(HomeLocator.cart);
+        await this.page.click(HomeLocator.cart, {delay: 500});
         await this.page.click(HomeLocator.viewCart);
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('load');
         return new ShoppingCartPage(this.page);
     }
 }
