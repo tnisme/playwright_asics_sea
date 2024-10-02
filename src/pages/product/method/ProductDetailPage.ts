@@ -1,9 +1,13 @@
 import {Page} from "@playwright/test";
 import ProductDetailLocator from "../locator/ProductDetailLocator";
 import {Product} from "../../../entity/product/Product";
-export default class ProductDetailPage {
 
-    constructor(private page: Page) {
+export default class ProductDetailPage extends ProductDetailLocator {
+
+    private page: Page;
+    constructor(page: Page) {
+        super();
+        this.page = page;
     }
 
     async addToCart(product?: Product): Promise<void> {
@@ -11,7 +15,7 @@ export default class ProductDetailPage {
             await this.setColor(product.getColor());
             await this.setSize(product.getSize());
         }
-        await this.page.click(ProductDetailLocator.addToCartButton);
+        await this.page.click(this.addToCartButton);
         await this.closeCartDraw();
     }
 
@@ -22,14 +26,14 @@ export default class ProductDetailPage {
         } else {
             localSize = size;
         }
-        await this.page.click(ProductDetailLocator.productSize(localSize));
+        await this.page.click(this.productSize(localSize));
     }
 
     async setColor(color: string): Promise<void> {
-        await this.page.click(ProductDetailLocator.productColor(color));
+        await this.page.click(this.productColor(color));
     }
 
     async closeCartDraw(): Promise<void> {
-        await this.page.click(ProductDetailLocator.closeCartDrawButton);
+        await this.page.click(this.closeCartDrawButton);
     }
 }

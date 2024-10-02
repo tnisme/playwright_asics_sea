@@ -1,18 +1,18 @@
 export default class CheckoutLocator {
-    static readonly shippingMethod = (shippingMethodId: string) => `//input[contains(@id, 'shippingMethod-${shippingMethodId}')]`;
-    static readonly paymentMethod = (paymentMethodId: string) => `//div[@class='payment-method-options']//div[@class='field-wrapper']/input[@value='${paymentMethodId}']`;
-    static readonly shippingFirstName = '#shippingFirstName';
-    static readonly shippingLastName = '#shippingLastName';
-    static readonly shippingAddress1 = '#shippingAddress1';
-    static readonly shippingCity = '#shippingAddressCity';
-    static readonly shippingState = '#shippingState';
-    static readonly shippingBangaray = '#shippingAddressBarangay';
-    static readonly shippingWard = '#shippingAddressWard';
-    static readonly shippingPostalCode = '#shippingPostalCode';
-    static readonly shippingCountry = '#shippingCountry';
-    static readonly shippingPhoneNumber = '#shippingPhoneNumber';
-    static readonly emailAddress = '#emailAddress';
-    static readonly submitShippingAddress = '//button[@value="submit-shipping"]'
-    static readonly submitShippingMethod = '//button[@value="submit-shipping-method"]'
-    static readonly placeOrder = '//button[@value="place-order"]';
+    protected shippingMethod = (shippingMethodId: string) => `//input[contains(@id, 'shippingMethod-${shippingMethodId}')]`;
+    protected paymentMethod = (paymentMethodId: string) => `//div[@class='payment-method-options']//div[@class='field-wrapper']/input[@value='${paymentMethodId}']`;
+    protected shippingFirstName = '#shippingFirstName';
+    protected shippingLastName = '#shippingLastName';
+    protected shippingAddress1 = '#shippingAddress1';
+    protected shippingCity = '#shippingAddressCity';
+    protected shippingState = '#shippingState';
+    protected shippingBangaray = '#shippingAddressBarangay';
+    protected shippingWard = '#shippingAddressWard';
+    protected shippingPostalCode = '#shippingPostalCode';
+    protected shippingCountry = '#shippingCountry';
+    protected shippingPhoneNumber = '#shippingPhoneNumber';
+    protected emailAddress = '#emailAddress';
+    protected submitShippingAddress = '//button[@value="submit-shipping"]';
+    protected submitShippingMethodButton = '//button[@value="submit-shipping-method"]';
+    protected placeOrderButton = '//button[@value="place-order"]';
 }

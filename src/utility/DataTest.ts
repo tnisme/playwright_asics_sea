@@ -4,7 +4,7 @@ import {VariationProduct, VariationProductBuilder} from "../entity/product/Varia
 import {CreditCard, CreditCardBuilder} from "../entity/customer/CreditCard";
 import {CreditCardType} from "../entity/data/CreditCardType";
 
-import fs = require('fs'); // import * as fs from 'fs';
+import * as fs from 'fs';
 import * as path from 'path';
 import {faker} from "@faker-js/faker/locale/en"; //https://www.npmjs.com/package/@faker-js/faker
 

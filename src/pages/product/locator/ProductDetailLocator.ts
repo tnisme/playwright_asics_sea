@@ -1,7 +1,7 @@
 export default class ProductDetailLocator {
-    static readonly productColor = (color: string) => `//li[@data-sizevalue='${color}']`;
-    static readonly productSize = (size: string) => `//li[@data-sizevalue='${size}']`;
+    protected productColor = (color: string) => `//li[@data-sizevalue='${color}']`;
+    protected productSize = (size: string) => `//li[@data-sizevalue='${size}']`;
 
-    static readonly addToCartButton = '#id-add-to-cart';
-    static readonly closeCartDrawButton = 'div.close-cart-draw';
+    protected addToCartButton = '#id-add-to-cart';
+    protected closeCartDrawButton = 'div.close-cart-draw';
 }

@@ -1,19 +1,19 @@
 import {ProductType} from "../data/ProductType";
 
 export class Product {
-    private name: string
-    private price: number
-    private quantity: number
-    private sku: string
-    private width: string
-    private gender: string
-    private productType: ProductType
-    private url: string
-    private category: string
-    private store: string
-    private warehouseId: string
-    private erpProductId: string
-    private weight: number
+    private name: string;
+    private price: number;
+    private quantity: number;
+    private sku: string;
+    private width: string;
+    private gender: string;
+    private productType: ProductType;
+    private url: string;
+    private category: string;
+    private store: string;
+    private warehouseId: string;
+    private erpProductId: string;
+    private weight: number;
 
     constructor(productBuilder: ProductBuilder) {
         this['name'] = productBuilder['name'];
@@ -85,19 +85,19 @@ export class Product {
 }
 
 export class ProductBuilder {
-    private name: string
-    private price: number
-    private quantity: number
-    private sku: string
-    private width: string
-    private gender: string
-    private url: string
-    private category: string
-    private store: string
-    private warehouseId: string
-    private erpProductId: string
-    private weight: number
-    protected productType: ProductType = ProductType.SINGLE
+    private name: string;
+    private price: number;
+    private quantity: number;
+    private sku: string;
+    private width: string;
+    private gender: string;
+    private url: string;
+    private category: string;
+    private store: string;
+    private warehouseId: string;
+    private erpProductId: string;
+    private weight: number;
+    protected productType: ProductType = ProductType.SINGLE;
 
     static instance: ProductBuilder = new ProductBuilder();
 
