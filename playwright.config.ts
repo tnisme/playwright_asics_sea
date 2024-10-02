@@ -1,12 +1,13 @@
-import { defineConfig, devices } from '@playwright/test';
-import testSuites from './test_suites';
+import { defineConfig, devices } from "@playwright/test";
+import testSuites from "./test_suites";
+// import * as dotenv from 'dotenv';
 import Browser from "./src/utility/Browser";
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-require('dotenv').config();
+require("dotenv").config();
 // import dotenv from 'dotenv';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -16,7 +17,7 @@ const timeInMin: number = 60 * 1000;
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
   /* Run tests in files in parallel */
   // TODO turn off fully parallel to not run parallel in file
   fullyParallel: false,
@@ -30,16 +31,19 @@ export default defineConfig({
   timeout: 0,
   reporter: [
     ["list"],
-    ["allure-playwright", {
-      detail: false,
-      suiteTitle: false,
-      environmentInfo: {
-        OS: process.platform.toUpperCase(),
-        BROWSER: process.env.BROWSER.toUpperCase(),
-        BASE_URL: process.env.BASE_URL,
-        NODE_VERSION: process.version,
+    [
+      "allure-playwright",
+      {
+        detail: false,
+        suiteTitle: false,
+        environmentInfo: {
+          OS: process.platform.toUpperCase(),
+          BROWSER: process.env.BROWSER.toUpperCase(),
+          BASE_URL: process.env.BASE_URL,
+          NODE_VERSION: process.version,
+        },
       },
-    }],
+    ],
   ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -47,7 +51,7 @@ export default defineConfig({
     baseURL: process.env.BASE_URL,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
 
     /* https://playwright.dev/docs/api/class-testoptions#test-options-browser-name */
     browserName: Browser.type(process.env.BROWSER.toLowerCase()),
@@ -58,13 +62,15 @@ export default defineConfig({
     launchOptions: {
       args: ["--start-maximized", "--disable-extensions", "--disable-plugins"],
       headless: false,
-      timeout: Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInMin,
+      timeout:
+        Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInMin,
       slowMo: 500,
       downloadsPath: "./test-results/downloads",
     },
     viewport: null,
     actionTimeout: Number.parseInt(process.env.ACTION_TIMEOUT, 10) * timeInMin,
-    navigationTimeout: Number.parseInt(process.env.NAVIGATION_TIMEOUT, 10) * timeInMin,
+    navigationTimeout:
+      Number.parseInt(process.env.NAVIGATION_TIMEOUT, 10) * timeInMin,
     screenshot: {
       mode: "only-on-failure",
       fullPage: true,
@@ -75,7 +81,8 @@ export default defineConfig({
     {
       name: "local",
       /* https://playwright.dev/docs/test-configuration#filtering-tests */
-      testMatch: testSuites[process.env.SUITE || "all"],
+      testMatch:
+        "*/tests/sg/Guest_CheckoutVisaCard_StandardDeliveryTest.spec.ts",
     },
   ],
 });

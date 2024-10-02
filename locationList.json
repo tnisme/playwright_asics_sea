@@ -26,18 +26,7 @@
     "A07",
     "A01"
   ],
-  "th_TH": [
-    "ASM",
-    "TH07",
-    "AFO"
-  ],
-  "vi_VN": [
-    "WEBPXSGC",
-    "VN02",
-    "WEBPXHANGBONG",
-    "WEBPXLEVANLUONG"
-  ],
-  "en_PH": [
-    "4002"
-  ]
+  "th_TH": ["ASM", "TH07", "AFO"],
+  "vi_VN": ["WEBPXSGC", "VN02", "WEBPXHANGBONG", "WEBPXLEVANLUONG"],
+  "en_PH": ["4002"]
 }

@@ -1,3 +1,5 @@
 export enum ProductType {
-    SINGLE, VARIATION, BUNDLE
+  SINGLE,
+  VARIATION,
+  BUNDLE,
 }

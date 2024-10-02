@@ -1,7 +1,7 @@
-import {test} from "@playwright/test";
+import { test } from "@playwright/test";
 
 export default function test2VN() {
-    test("test2vn", async ({page}) => {
-        console.log('regression vn')
-    })
+  test("test2vn", async ({ page }) => {
+    console.log("regression vn");
+  });
 }
