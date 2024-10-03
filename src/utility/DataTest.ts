@@ -1,11 +1,11 @@
-import { Customer, CustomerBuilder } from "../entity/customer/Customer";
-import { Address, AddressBuilder } from "../entity/customer/Address";
+import { Customer, CustomerBuilder } from "@entity/customer/Customer";
+import { Address, AddressBuilder } from "@entity/customer/Address";
 import {
   VariationProduct,
   VariationProductBuilder,
-} from "../entity/product/VariationProduct";
-import { CreditCard, CreditCardBuilder } from "../entity/customer/CreditCard";
-import { CreditCardType } from "../entity/data/CreditCardType";
+} from "@entity/product/VariationProduct";
+import { CreditCard, CreditCardBuilder } from "@entity/customer/CreditCard";
+import { CreditCardType } from "@entity/data/CreditCardType";
 
 import * as fs from "fs";
 import * as path from "path";

@@ -1,24 +1,23 @@
 import { test } from "@playwright/test";
-import HomePage from "../../src/pages/utility/method/HomePage";
-import LoginPage from "../../src/pages/utility/method/LoginPage";
-import { Customer } from "../../src/entity/customer/Customer";
-import { Address } from "../../src/entity/customer/Address";
-import { DataTest } from "../../src/utility/DataTest";
-import { VariationProduct } from "../../src/entity/product/VariationProduct";
-import NavigateUtility from "../../src/utility/NavigateUtility";
-import ProductListPage from "../../src/pages/product/method/ProductListPage";
-import ProductDetailPage from "../../src/pages/product/method/ProductDetailPage";
-import ShoppingCartPage from "../../src/pages/cart/method/ShoppingCartPage";
-import CheckoutPage from "../../src/pages/checkout/method/CheckoutPage";
+import HomePage from "@pages/utility/method/HomePage";
+import { Customer } from "@entity/customer/Customer";
+import { Address } from "@entity/customer/Address";
+import { DataTest } from "@utility/DataTest";
+import { VariationProduct } from "@entity/product/VariationProduct";
+import NavigateUtility from "@utility/NavigateUtility";
+import ProductListPage from "@pages/product/method/ProductListPage";
+import ProductDetailPage from "@pages/product/method/ProductDetailPage";
+import ShoppingCartPage from "@pages/cart/method/ShoppingCartPage";
+import CheckoutPage from "@pages/checkout/method/CheckoutPage";
 import {
   ShippingMethod,
   ShippingMethodUtils,
-} from "../../src/entity/data/ShippingMethod";
-import { PaymentMethod } from "../../src/entity/data/PaymentMethod";
-import WorldPayPage from "../../src/pages/worldPay/method/WorldPayPage";
-import { CreditCard } from "../../src/entity/customer/CreditCard";
-import { CreditCardType } from "../../src/entity/data/CreditCardType";
-import ThankYouPage from "../../src/pages/checkout/method/ThankYouPage";
+} from "@entity/data/ShippingMethod";
+import { PaymentMethod } from "@entity/data/PaymentMethod";
+import WorldPayPage from "@pages/worldPay/method/WorldPayPage";
+import { CreditCard } from "@entity/customer/CreditCard";
+import { CreditCardType } from "@entity/data/CreditCardType";
+import ThankYouPage from "@pages/checkout/method/ThankYouPage";
 
 let homePage: HomePage,
   customer: Customer,
@@ -51,7 +50,7 @@ test.beforeAll("init", async () => {
 test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({ page }) => {
   await test.step("Add product to cart", async () => {
     homePage = await NavigateUtility.navigateToHomePage(page);
-    await homePage.isGuest(); // only for showing how to extends locator class
+    await homePage.isGuest(); // only for showing how to extend locator class
     productListPage = await homePage.search(product.getName());
     productDetailPage = await productListPage.viewProductDetail(product);
     await productDetailPage.addToCart(product);
