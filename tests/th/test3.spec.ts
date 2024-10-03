@@ -1,7 +1,7 @@
-import {test} from "@playwright/test";
+import { test } from "@playwright/test";
 
 export default function test3TH() {
-    test("test3th", async ({page}) => {
-        console.log('last th')
-    })
+  test("test3th", async ({ page }) => {
+    console.log("last th");
+  });
 }
