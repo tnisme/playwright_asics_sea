@@ -1,5 +1,4 @@
-import { defineConfig, devices } from "@playwright/test";
-import testSuites from "./test_suites";
+import { defineConfig } from "@playwright/test";
 // import * as dotenv from 'dotenv';
 import Browser from "./src/utility/Browser";
 
@@ -7,9 +6,9 @@ import Browser from "./src/utility/Browser";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-require("dotenv").config();
-// import dotenv from 'dotenv';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const timeInMin: number = 60 * 1000;
 

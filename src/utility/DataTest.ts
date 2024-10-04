@@ -84,7 +84,7 @@ export class DataTest {
         .setPrice(product.price)
         .setCategory(product.category)
         .setUrl(product.url)
-        // @ts-ignore
+        // @ts-expect-error: IDE can not reference to this method
         .setSize(product.size)
         .setColor(product.color)
         .setWidth(product.width)
@@ -104,7 +104,7 @@ export class DataTest {
         .setPrice(product.price)
         .setCategory(product.category)
         .setUrl(product.url)
-        // @ts-ignore
+        // @ts-expect-error: IDE can not reference to this method
         .setSize(product.size)
         .setColor(product.color)
         .setWidth(product.width)

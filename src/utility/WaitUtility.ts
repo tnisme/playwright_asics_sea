@@ -1,8 +1,6 @@
-import { Page } from "@playwright/test";
 import { Locator } from "@playwright/test";
 
 export default class WaitUtility {
-  constructor(page: Page) {}
 
   /**
    *

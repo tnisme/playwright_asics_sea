@@ -11,9 +11,9 @@ export default class ProductDetailPage extends ProductDetailLocator {
 
   async addToCart(product?: Product): Promise<void> {
     if (product) {
-      //@ts-ignore
+      //@ts-expect-error: IDE can not reference to this method
       await this.setColor(product.getColor());
-      //@ts-ignore
+      //@ts-expect-error: IDE can not reference to this method
       await this.setSize(product.getSize());
     }
     await this.page.click(this.addToCartButton);
