@@ -57,7 +57,7 @@ export class Omnichannel {
   public static async uploadFile(
     request: APIRequestContext,
     filePath: string,
-  ): Promise<any> {
+  ): Promise<string> {
     const token = await this.getToken(request);
     const uploadLink = await this.importImpexApi(request, token);
 

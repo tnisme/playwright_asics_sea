@@ -9,8 +9,7 @@ export default class ThankYouPage extends ThankYouLocator {
   }
 
   async getOrderNumber(): Promise<string> {
-    let orderNumber: string;
-    orderNumber = await this.page.innerText(this.orderNumber);
+    const orderNumber = await this.page.innerText(this.orderNumber);
     return orderNumber;
   }
 }

@@ -38,6 +38,14 @@ let homePage: HomePage,
   shippingFee: number,
   grandTotal: number;
 
+async function calculate() {
+  if (await shoppingCartPage.isHasDiscountOrder())
+    discount = await shoppingCartPage.getDiscountOrderAmount();
+  subTotal = product.getPrice() * product.getQuantity();
+  shippingFee = ShippingMethodUtils.getFee(shippingMethod, subTotal);
+  grandTotal = subTotal + shippingFee - discount;
+}
+
 test.beforeAll("init", async () => {
   customer = DataTest.getCustomerInformation();
   product = DataTest.getVariationProduct1();
@@ -50,7 +58,6 @@ test.beforeAll("init", async () => {
 test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({ page }) => {
   await test.step("Add product to cart", async () => {
     homePage = await NavigateUtility.navigateToHomePage(page);
-    await homePage.isGuest(); // only for showing how to extend locator class
     productListPage = await homePage.search(product.getName());
     productDetailPage = await productListPage.viewProductDetail(product);
     await productDetailPage.addToCart(product);
@@ -73,11 +80,3 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({ page }) => {
     orderNumber = await thankYouPage.getOrderNumber();
   });
 });
-
-async function calculate() {
-  if (await shoppingCartPage.isHasDiscountOrder())
-    discount = await shoppingCartPage.getDiscountOrderAmount();
-  subTotal = product.getPrice() * product.getQuantity();
-  shippingFee = ShippingMethodUtils.getFee(shippingMethod, subTotal);
-  grandTotal = subTotal + shippingFee - discount;
-}

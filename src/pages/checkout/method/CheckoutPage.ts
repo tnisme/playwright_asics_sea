@@ -67,7 +67,7 @@ export default class CheckoutPage extends CheckoutLocator {
     );
   }
 
-  async placeOrder(paymentMethod: PaymentMethod): Promise<any> {
+  async placeOrder(paymentMethod: PaymentMethod): Promise<WorldPayPage> {
     await this.page.click(this.placeOrderButton);
     await this.page.waitForLoadState("load");
     switch (paymentMethod) {
