@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "prettier": "prettier . --write"
+    "prettier": "prettier . --write",
+    "report": "allure serve allure-results"
   },
   "keywords": [],
   "author": "",
