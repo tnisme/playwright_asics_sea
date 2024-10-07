@@ -2,9 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "paths": {
-      "@pages/*":["pages/*"],
-      "@entity/*":["entity/*"],
-      "@utility/*":["utility/*"],
+      "@pages/*": ["pages/*"],
+      "@entity/*": ["entity/*"],
+      "@utility/*": ["utility/*"]
     },
     "target": "ESNext",
     "module": "CommonJS",
@@ -13,6 +13,6 @@
     "outDir": "../tests-out",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "allowSyntheticDefaultImports": true
   }
 }

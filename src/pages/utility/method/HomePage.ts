@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page, test } from "@playwright/test";
 import ProductListPage from "../../product/method/ProductListPage";
 import LoginPage from "./LoginPage";
 import ShoppingCartPage from "../../cart/method/ShoppingCartPage";
@@ -16,17 +16,21 @@ export default class HomePage extends HomeLocator {
   }
 
   async goToLoginPage(): Promise<LoginPage> {
-    await this.page.click(this.myAccount);
-    await this.page.waitForLoadState("load");
-    await this.page.click(this.login);
-    await this.page.waitForLoadState("load");
+    await test.step("go to login page", async () => {
+      await this.page.click(this.myAccount);
+      await this.page.waitForLoadState("load");
+      await this.page.click(this.login);
+      await this.page.waitForLoadState("load");
+    });
     return new LoginPage(this.page);
   }
 
   async search(key: string): Promise<ProductListPage> {
-    await this.page.fill(this.searchLocator, key);
-    await this.page.keyboard.press("Enter");
-    await this.page.waitForLoadState("load");
+    await test.step("search", async () => {
+      await this.page.fill(this.searchLocator, key);
+      await this.page.keyboard.press("Enter");
+      await this.page.waitForLoadState("load");
+    });
     return new ProductListPage(this.page);
   }
 
@@ -35,9 +39,11 @@ export default class HomePage extends HomeLocator {
   }
 
   async viewCart(): Promise<ShoppingCartPage> {
-    await this.page.click(this.cart, { delay: 500 });
-    await this.page.click(this.viewCartButton);
-    await this.page.waitForLoadState("load");
+    await test.step("view cart", async () => {
+      await this.page.click(this.cart, { delay: 500 });
+      await this.page.click(this.viewCartButton);
+      await this.page.waitForLoadState("load");
+    });
     return new ShoppingCartPage(this.page);
   }
 }

@@ -56,27 +56,23 @@ test.beforeAll("init", async () => {
 });
 
 test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({ page }) => {
-  await test.step("Add product to cart", async () => {
-    homePage = await NavigateUtility.navigateToHomePage(page);
-    productListPage = await homePage.search(product.getName());
-    productDetailPage = await productListPage.viewProductDetail(product);
-    await productDetailPage.addToCart(product);
-  });
+  homePage = await NavigateUtility.navigateToHomePage(page);
+  productListPage = await homePage.search(product.getName());
+  productDetailPage = await productListPage.viewProductDetail(product);
+  await productDetailPage.addToCart(product);
 
-  await test.step("Checkout", async () => {
-    shoppingCartPage = await homePage.viewCart();
-    await calculate();
-    checkoutPage = await shoppingCartPage.checkout();
+  shoppingCartPage = await homePage.viewCart();
+  await calculate();
+  checkoutPage = await shoppingCartPage.checkout();
 
-    await checkoutPage.fillInShippingInformation(address, customer);
-    await checkoutPage.submitShipping();
-    await checkoutPage.setShippingMethod(shippingMethod);
-    await checkoutPage.submitShippingMethod();
-    await checkoutPage.setPaymentMethod(paymentMethod);
-    worldPayPage = await checkoutPage.placeOrder(paymentMethod);
+  await checkoutPage.fillInShippingInformation(address, customer);
+  await checkoutPage.submitShipping();
+  await checkoutPage.setShippingMethod(shippingMethod);
+  await checkoutPage.submitShippingMethod();
+  await checkoutPage.setPaymentMethod(paymentMethod);
+  worldPayPage = await checkoutPage.placeOrder(paymentMethod);
 
-    await worldPayPage.fillInCard(card);
-    thankYouPage = await worldPayPage.makePayment();
-    orderNumber = await thankYouPage.getOrderNumber();
-  });
+  await worldPayPage.fillInCard(card);
+  thankYouPage = await worldPayPage.makePayment();
+  orderNumber = await thankYouPage.getOrderNumber();
 });

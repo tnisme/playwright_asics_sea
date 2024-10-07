@@ -1,6 +1,6 @@
-import { Page } from "@playwright/test";
+import { Page, test } from "@playwright/test";
 import LoginLocator from "../locator/LoginLocator";
-import { Customer } from "../../../entity/customer/Customer";
+import { Customer } from "@entity/customer/Customer";
 import HomePage from "./HomePage";
 
 export default class LoginPage extends LoginLocator {
@@ -11,10 +11,12 @@ export default class LoginPage extends LoginLocator {
   }
 
   async login(customer: Customer): Promise<HomePage> {
-    await this.page.locator(this.username).fill(customer.getEmail());
-    await this.page.locator(this.password).fill(customer.getPassword());
-    await this.page.locator(this.loginButton).click();
-    await this.page.waitForLoadState("load");
+    await test.step("login", async () => {
+      await this.page.locator(this.username).fill(customer.getEmail());
+      await this.page.locator(this.password).fill(customer.getPassword());
+      await this.page.locator(this.loginButton).click();
+      await this.page.waitForLoadState("load");
+    });
     return new HomePage(this.page);
   }
 }

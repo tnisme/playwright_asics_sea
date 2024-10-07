@@ -1,7 +1,6 @@
 import { Locator } from "@playwright/test";
 
 export default class WaitUtility {
-
   /**
    *
    * @param element
