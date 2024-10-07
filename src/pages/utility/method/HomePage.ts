@@ -26,7 +26,7 @@ export default class HomePage extends HomeLocator {
   }
 
   async search(key: string): Promise<ProductListPage> {
-    await test.step("search", async () => {
+    await test.step(`search product: ${key}`, async () => {
       await this.page.fill(this.searchLocator, key);
       await this.page.keyboard.press("Enter");
       await this.page.waitForLoadState("load");

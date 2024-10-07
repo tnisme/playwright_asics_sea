@@ -31,13 +31,13 @@ export default class ProductDetailPage extends ProductDetailLocator {
     } else {
       localSize = size;
     }
-    await test.step("Set size", async () => {
+    await test.step(`Set size ${size}`, async () => {
       await this.page.click(this.productSize(localSize));
     });
   }
 
   async setColor(color: string): Promise<void> {
-    await test.step("Set color", async () => {
+    await test.step(`Set color ${color}`, async () => {
       await this.page.click(this.productColor(color));
     });
   }

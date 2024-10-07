@@ -12,7 +12,7 @@ export default class ProductListPage extends ProductListLocator {
 
   async viewProductDetail(product: Product): Promise<ProductDetailPage> {
     if (!this.page.url().includes(product.getUrl())) {
-      await test.step("view product detail", async () => {
+      await test.step(`view product detail ${product.getName()}`, async () => {
         await this.page.click(this.productItem(product.getUrl()));
         await this.page.waitForLoadState("load");
       });

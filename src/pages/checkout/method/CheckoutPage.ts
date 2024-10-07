@@ -6,10 +6,7 @@ import {
   ShippingMethod,
   ShippingMethodUtils,
 } from "@entity/data/ShippingMethod";
-import {
-  PaymentMethod,
-  PaymentMethodUtils,
-} from "@entity/data/PaymentMethod";
+import { PaymentMethod, PaymentMethodUtils } from "@entity/data/PaymentMethod";
 import WorldPayPage from "../../worldPay/method/WorldPayPage";
 
 export default class CheckoutPage extends CheckoutLocator {
@@ -69,7 +66,7 @@ export default class CheckoutPage extends CheckoutLocator {
   }
 
   async setPaymentMethod(paymentMethod: PaymentMethod) {
-    await test.step("Set payment method", async () => {
+    await test.step(`Set payment method: ${PaymentMethodUtils.getValue(paymentMethod)}`, async () => {
       await this.page.setChecked(
         this.paymentMethod(PaymentMethodUtils.getValue(paymentMethod)),
         true,
@@ -90,71 +87,73 @@ export default class CheckoutPage extends CheckoutLocator {
   }
 
   private async setShippingFirstName(firstName: string) {
-    await test.step("Set shipping first name", async () => {
+    await test.step(`Set shipping first name: ${firstName}`, async () => {
       await this.page.fill(this.shippingFirstName, firstName);
     });
   }
 
   private async setShippingLastName(lastName: string) {
-    await test.step("Set shipping last name", async () => {
+    await test.step(`Set shipping last name: ${lastName}`, async () => {
       await this.page.fill(this.shippingLastName, lastName);
     });
   }
 
   private async setShippingAddress1(address: string) {
-    await test.step("Set shipping address", async () => {
+    await test.step(`Set shipping address: ${address}`, async () => {
       await this.page.fill(this.shippingAddress1, address);
     });
   }
 
   private async setShippingCity(city: string) {
-    await test.step("Set shipping city", async () => {
-      if (process.env.LOCATE == "vi_VN" || process.env.LOCATE == "en_PH") {
+    if (process.env.LOCATE == "vi_VN" || process.env.LOCATE == "en_PH") {
+      await test.step(`Set select option shipping city: ${city}`, async () => {
         await this.page.selectOption(this.shippingCity, city);
-      } else {
+      });
+    } else {
+      await test.step(`Set field shipping city: ${city}`, async () => {
         await this.page.fill(this.shippingCity, city);
-      }
-    });
+      });
+    }
   }
 
   private async setShippingState(state: string) {
-    await test.step("Set shipping state", async () => {
+    await test.step(`Set shipping state: ${state}`, async () => {
       await this.page.selectOption(this.shippingState, state);
     });
   }
 
   private async setShippingBangaray(bangaray: string) {
-    await test.step("Set shipping bangaray", async () => {
+    await test.step(`Set shipping bangaray: ${bangaray}`, async () => {
       await this.page.selectOption(this.shippingBangaray, bangaray);
     });
   }
 
   private async setShippingWard(ward: string) {
-    await test.step("Set shipping ward", async () => {
+    await test.step(`Set shipping ward: ${ward}`, async () => {
       await this.page.fill(this.shippingWard, ward);
     });
   }
 
   private async setShippingPostalCode(postalCode: string) {
-    await test.step("Set shipping postal code", async () => {
+    await test.step(`Set shipping postal code: ${postalCode}`, async () => {
       await this.page.fill(this.shippingPostalCode, postalCode);
     });
   }
 
   private async setShippingCountry(country: string) {
-    await test.step("Set shipping country", async () => {
+    await test.step(`Set shipping country: ${country}`, async () => {
       await this.page.selectOption(this.shippingCountry, country);
     });
   }
 
   private async setShippingPhoneNumber(phone: string) {
-    await test.step("Set shipping phone number", async () => {
+    await test.step(`Set shipping phone number: ${phone}`, async () => {
       await this.page.fill(this.shippingPhoneNumber, phone);
     });
   }
 
   private async setEmailAddress(email: string) {
-    await test.step("Set email address", async () => {
+    await test.step(`Set email address: ${email}`, async () => {
       await this.page.fill(this.emailAddress, email);
     });
   }
