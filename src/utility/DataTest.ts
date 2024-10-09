@@ -41,6 +41,18 @@ export class DataTest {
       .build();
   }
 
+  static getRandomCustomerInformation(): Customer {
+    const customer =
+      customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1;
+    return CustomerBuilder.setFirstName(faker.person.firstName())
+      .setLastName(faker.person.lastName())
+      .setEmail(faker.internet.email())
+      .setPassword(faker.internet.password())
+      .setGender(customer.gender)
+      .setBirthDay(customer.birthday)
+      .build();
+  }
+
   static getDefaultAddress(): Address {
     const defaultAddress =
       customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1
