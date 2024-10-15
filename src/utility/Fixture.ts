@@ -1,16 +1,19 @@
 import { test as base } from "@playwright/test";
 import NavigateUtility from "@utility/NavigateUtility";
-import HomePage from "@pages/utility/method/HomePage";
-import ProductListPage from "@pages/product/method/ProductListPage";
-import ProductDetailPage from "@pages/product/method/ProductDetailPage";
-import ShoppingCartPage from "@pages/cart/method/ShoppingCartPage";
-import CheckoutPage from "@pages/checkout/method/CheckoutPage";
-import WorldPayPage from "@pages/worldPay/method/WorldPayPage";
+import HomePage from "@pages/utility/step/HomePage";
+import ProductListPage from "@pages/product/step/ProductListPage";
+import ProductDetailPage from "@pages/product/step/ProductDetailPage";
+import ShoppingCartPage from "@pages/cart/step/ShoppingCartPage";
+import CheckoutPage from "@pages/checkout/step/CheckoutPage";
+import WorldPayPage from "@pages/worldPay/step/WorldPayPage";
 import { DataTest } from "@utility/DataTest";
-import { ShippingMethod } from "@entity/data/ShippingMethod";
+import {
+  ShippingMethod,
+  ShippingMethodUtils,
+} from "@entity/data/ShippingMethod";
 import { PaymentMethod } from "@entity/data/PaymentMethod";
 import { CreditCardType } from "@entity/data/CreditCardType";
-import ThankYouPage from "@pages/checkout/method/ThankYouPage";
+import ThankYouPage from "@pages/checkout/step/ThankYouPage";
 
 export const test = base.extend({
   page: async ({ page }, use) => {
@@ -70,11 +73,25 @@ export const test = base.extend({
     await use(ShippingMethod.STANDARD);
   },
 
+  shippingMethodNextDay: async ({}, use) => {
+    await use(ShippingMethod.NEXT_DAY);
+  },
+
   paymentMethodCreditCard: async ({}, use) => {
     await use(PaymentMethod.CREDIT_CARD);
   },
 
   visaCard: async ({}, use) => {
     await use(DataTest.getCard(CreditCardType.VISA));
+  },
+
+  calculated: async ({ variantProduct1, shippingMethodStandard }, use) => {
+    const subTotal = variantProduct1.getPrice() * variantProduct1.getQuantity();
+    const shippingFee = ShippingMethodUtils.getFee(
+      shippingMethodStandard,
+      subTotal,
+    );
+    const grandTotal = subTotal + shippingFee;
+    await use({ subTotal, shippingFee, grandTotal });
   },
 });

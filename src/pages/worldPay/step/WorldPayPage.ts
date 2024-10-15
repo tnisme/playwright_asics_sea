@@ -1,7 +1,6 @@
 import { Page, test } from "@playwright/test";
 import WorldPayLocator from "../locator/WorldPayLocator";
 import { CreditCard } from "@entity/customer/CreditCard";
-import ThankYouPage from "../../checkout/method/ThankYouPage";
 
 export default class WorldPayPage extends WorldPayLocator {
   private page: Page;
@@ -24,11 +23,10 @@ export default class WorldPayPage extends WorldPayLocator {
     );
   }
 
-  async makePayment(): Promise<ThankYouPage> {
+  async makePayment() {
     await test.step("Make payment", async () => {
       await this.page.click(this.makePaymentButton);
       await this.page.waitForLoadState("load");
     });
-    return new ThankYouPage(this.page);
   }
 }

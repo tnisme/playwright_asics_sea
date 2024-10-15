@@ -1,5 +1,5 @@
 import { Page } from "@playwright/test";
-import HomePage from "@pages/utility/method/HomePage";
+import HomePage from "@pages/utility/step/HomePage";
 
 export default class NavigateUtility {
   public static async navigateToHomePage(page: Page): Promise<HomePage> {

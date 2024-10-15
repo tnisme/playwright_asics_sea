@@ -7,7 +7,10 @@ import {
   ShippingMethodUtils,
 } from "@entity/data/ShippingMethod";
 import { PaymentMethod, PaymentMethodUtils } from "@entity/data/PaymentMethod";
-import WorldPayPage from "../../worldPay/method/WorldPayPage";
+import AssertUtility from "@utility/AssertUtility";
+import { Product } from "@entity/product/Product";
+import PriceUtility from "@utility/PriceUtility";
+import { ProductType } from "@entity/data/ProductType";
 
 export default class CheckoutPage extends CheckoutLocator {
   private page: Page;
@@ -23,21 +26,25 @@ export default class CheckoutPage extends CheckoutLocator {
       await this.setShippingAddress1(address.getAddress1());
       await this.setShippingPhoneNumber(address.getPhoneNumber());
 
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (process.env.LOCATE == "vi_VN") {
         await this.setShippingCity(address.getCity());
         await this.setShippingState(address.getState());
         await this.setShippingWard(address.getWard());
       } else {
+        // eslint-disable-next-line playwright/no-conditional-in-test
         if (process.env.LOCATE != "en_SG") {
           await this.setShippingState(address.getState());
           await this.setShippingCity(address.getCity());
         }
         await this.setShippingPostalCode(address.getZipCode());
+        // eslint-disable-next-line playwright/no-conditional-in-test
         if (process.env.LOCATE == "en_PH") {
           await this.setShippingBangaray(address.getBarangay());
         }
       }
 
+      // eslint-disable-next-line playwright/no-conditional-in-test
       if (customer) {
         await this.setEmailAddress(customer.getEmail());
       }
@@ -74,16 +81,11 @@ export default class CheckoutPage extends CheckoutLocator {
     });
   }
 
-  async placeOrder(paymentMethod: PaymentMethod): Promise<WorldPayPage> {
+  async placeOrder() {
     await test.step("Place order", async () => {
       await this.page.click(this.placeOrderButton);
       await this.page.waitForLoadState("load");
     });
-    switch (paymentMethod) {
-      case PaymentMethod.CREDIT_CARD: {
-        if (process.env.LOCATE == "en_SG") return new WorldPayPage(this.page);
-      }
-    }
   }
 
   private async setShippingFirstName(firstName: string) {
@@ -155,6 +157,117 @@ export default class CheckoutPage extends CheckoutLocator {
   private async setEmailAddress(email: string) {
     await test.step(`Set email address: ${email}`, async () => {
       await this.page.fill(this.emailAddress, email);
+    });
+  }
+
+  async isCreditCardMethodChecked() {
+    await test.step("Is credit card method checked", async () => {
+      const isChecked = await this.page.isChecked(
+        this.paymentMethod(
+          PaymentMethodUtils.getValue(PaymentMethod.CREDIT_CARD),
+        ),
+      );
+      await AssertUtility.assertTrue(
+        isChecked,
+        "Credit card method is not checked",
+      );
+    });
+  }
+
+  async checkProduct(product: Product) {
+    await test.step(`Check product: ${product.getName()}`, async () => {
+      await this.checkProductName(product);
+      await this.checkProductSubtotalPrice(product);
+      // eslint-disable-next-line playwright/no-conditional-in-test
+      if (product.getProductType() === ProductType.VARIATION) {
+        await this.checkProductSize(product);
+        await this.checkProductColor(product);
+      }
+    });
+  }
+
+  private async checkProductName(product: Product) {
+    await test.step(`Check product name: ${product.getName()}`, async () => {
+      const actual = await this.page.innerText(
+        this.productName(product.getSku()),
+      );
+      await AssertUtility.assertEqual(actual, product.getName());
+    });
+  }
+
+  private async checkProductSubtotalPrice(product: Product) {
+    await test.step(`Check product subtotal price: ${product.getName()}`, async () => {
+      const actual = await this.page.innerText(
+        this.productSubtotalPrice(product.getSku()),
+      );
+      await AssertUtility.assertEqual(
+        actual,
+        PriceUtility.convertPriceToString(
+          product.getPrice() * product.getQuantity(),
+        ),
+      );
+    });
+  }
+
+  private async checkProductSize(product: Product) {
+    await test.step(`Check product size: ${product.getName()}`, async () => {
+      const actual = await this.page.innerText(
+        this.productSize(product.getSku()),
+      );
+      //@ts-expect-error: IDE can not reference to this method
+      await AssertUtility.assertEqual(actual, product.getSize());
+    });
+  }
+
+  private async checkProductColor(product: Product) {
+    await test.step(`Check product color: ${product.getName()}`, async () => {
+      const actual = await this.page.innerText(
+        this.productColor(product.getSku()),
+      );
+      //@ts-expect-error: IDE can not reference to this method
+      await AssertUtility.assertEqual(actual, product.getColor());
+    });
+  }
+
+  async checkShippingFee(fee: number) {
+    const shippingFee = await this.page.innerText(this.shippingFee);
+    const shippingFeeExpected =
+      fee > 0
+        ? PriceUtility.convertPriceToString(fee)
+        : this.getShippingFeeText();
+    await test.step(`Check shipping fee: ${shippingFeeExpected}`, async () => {
+      await AssertUtility.assertEqual(shippingFee, shippingFeeExpected);
+    });
+  }
+
+  private getShippingFeeText(): string {
+    switch (process.env.LOCATE) {
+      case "th_TH":
+        return "ฟรี";
+      case "vi_VN":
+        return "Miễn phí";
+      default:
+        return "Free";
+    }
+  }
+
+  async checkSubtotalPrice(price: number) {
+    const subtotalPrice = await this.page.innerText(this.subtotal);
+    await test.step(`Check subtotal price`, async () => {
+      await AssertUtility.assertEqual(
+        subtotalPrice,
+        PriceUtility.convertPriceToString(price),
+      );
+    });
+  }
+
+  async checkGrandTotalPrice(price: number) {
+    const totalPrice = await this.page.innerText(this.grandTotal);
+    await test.step(`Check total price`, async () => {
+      await AssertUtility.assertEqual(
+        totalPrice,
+        PriceUtility.convertPriceToString(price),
+      );
     });
   }
 }

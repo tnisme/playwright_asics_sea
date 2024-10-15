@@ -14,21 +14,28 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   shippingMethodStandard,
   paymentMethodCreditCard,
   visaCard,
+  calculated,
 }) => {
   await homePage.search(variantProduct1.getName());
   await productListPage.viewProductDetail(variantProduct1);
   await productDetailPage.addToCart(variantProduct1);
 
   await homePage.viewCart();
-  // await calculate();
   await shoppingCartPage.checkout();
 
   await checkoutPage.fillInShippingInformation(randomAddress, randomCustomer);
   await checkoutPage.submitShipping();
   await checkoutPage.setShippingMethod(shippingMethodStandard);
+  await checkoutPage.isCreditCardMethodChecked();
   await checkoutPage.submitShippingMethod();
   await checkoutPage.setPaymentMethod(paymentMethodCreditCard);
-  await checkoutPage.placeOrder(paymentMethodCreditCard);
+
+  await checkoutPage.checkProduct(variantProduct1);
+  await checkoutPage.checkShippingFee(calculated.shippingFee);
+  await checkoutPage.checkSubtotalPrice(calculated.subTotal);
+  await checkoutPage.checkGrandTotalPrice(calculated.grandTotal);
+
+  await checkoutPage.placeOrder();
 
   await worldPayPage.fillInCard(visaCard);
   await worldPayPage.makePayment();

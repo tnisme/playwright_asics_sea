@@ -100,7 +100,7 @@ export class DataTest {
         .setSize(product.size)
         .setColor(product.color)
         .setWidth(product.width)
-        .setQuantity(product.quantity)
+        .setQuantity(product.qty)
         .setErpProductId(product.erpProductId)
         .setWarehouseId(product.warehouseId)
         .build()
@@ -136,5 +136,22 @@ export class DataTest {
       .setCid(card.cid)
       .setType(creditCardType)
       .build();
+  }
+
+  static getCurrency(): string {
+    switch (process.env.LOCATE) {
+      case "en_SG":
+        return "SGD";
+      case "en_MY":
+        return "MYR";
+      case "en_PH":
+        return "PHP";
+      case "th_TH":
+        return "THB";
+      case "vi_VN":
+        return "VND";
+      default:
+        return "invalid";
+    }
   }
 }

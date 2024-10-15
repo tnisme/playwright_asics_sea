@@ -9,7 +9,7 @@ export default class ProductDetailPage extends ProductDetailLocator {
     this.page = page;
   }
 
-  async addToCart(product?: Product): Promise<void> {
+  async addToCart(product?: Product) {
     if (product) {
       await test.step("Set variant", async () => {
         //@ts-expect-error: IDE can not reference to this method
@@ -24,7 +24,7 @@ export default class ProductDetailPage extends ProductDetailLocator {
     });
   }
 
-  async setSize(size: string): Promise<void> {
+  async setSize(size: string) {
     let localSize: string;
     if (size.includes("/")) {
       localSize = size.split("/")[0].replace("Men's | Women's", "").trim();
@@ -36,13 +36,13 @@ export default class ProductDetailPage extends ProductDetailLocator {
     });
   }
 
-  async setColor(color: string): Promise<void> {
+  async setColor(color: string) {
     await test.step(`Set color ${color}`, async () => {
       await this.page.click(this.productColor(color));
     });
   }
 
-  async closeCartDraw(): Promise<void> {
+  async closeCartDraw() {
     await test.step("Close cart draw", async () => {
       await this.page.click(this.closeCartDrawButton);
     });
