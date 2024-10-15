@@ -19,7 +19,7 @@ export default class WorldPayPage extends WorldPayLocator {
         await this.page.fill(this.cardExpMonth, card.getMonth());
         await this.page.fill(this.cardExpYear, card.getYear().substring(2, 4));
         await this.page.fill(this.cardName, card.getName());
-      },
+      }
     );
   }
 

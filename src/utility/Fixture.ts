@@ -89,7 +89,7 @@ export const test = base.extend({
     const subTotal = variantProduct1.getPrice() * variantProduct1.getQuantity();
     const shippingFee = ShippingMethodUtils.getFee(
       shippingMethodStandard,
-      subTotal,
+      subTotal
     );
     const grandTotal = subTotal + shippingFee;
     await use({ subTotal, shippingFee, grandTotal });

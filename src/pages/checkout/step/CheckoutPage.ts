@@ -61,7 +61,7 @@ export default class CheckoutPage extends CheckoutLocator {
     await test.step("Set shipping method", async () => {
       await this.page.setChecked(
         this.shippingMethod(ShippingMethodUtils.getId(shippingMethod)),
-        true,
+        true
       );
     });
   }
@@ -76,7 +76,7 @@ export default class CheckoutPage extends CheckoutLocator {
     await test.step(`Set payment method: ${PaymentMethodUtils.getValue(paymentMethod)}`, async () => {
       await this.page.setChecked(
         this.paymentMethod(PaymentMethodUtils.getValue(paymentMethod)),
-        true,
+        true
       );
     });
   }
@@ -164,12 +164,12 @@ export default class CheckoutPage extends CheckoutLocator {
     await test.step("Is credit card method checked", async () => {
       const isChecked = await this.page.isChecked(
         this.paymentMethod(
-          PaymentMethodUtils.getValue(PaymentMethod.CREDIT_CARD),
-        ),
+          PaymentMethodUtils.getValue(PaymentMethod.CREDIT_CARD)
+        )
       );
       await AssertUtility.assertTrue(
         isChecked,
-        "Credit card method is not checked",
+        "Credit card method is not checked"
       );
     });
   }
@@ -189,7 +189,7 @@ export default class CheckoutPage extends CheckoutLocator {
   private async checkProductName(product: Product) {
     await test.step(`Check product name: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productName(product.getSku()),
+        this.productName(product.getSku())
       );
       await AssertUtility.assertEqual(actual, product.getName());
     });
@@ -198,13 +198,13 @@ export default class CheckoutPage extends CheckoutLocator {
   private async checkProductSubtotalPrice(product: Product) {
     await test.step(`Check product subtotal price: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productSubtotalPrice(product.getSku()),
+        this.productSubtotalPrice(product.getSku())
       );
       await AssertUtility.assertEqual(
         actual,
         PriceUtility.convertPriceToString(
-          product.getPrice() * product.getQuantity(),
-        ),
+          product.getPrice() * product.getQuantity()
+        )
       );
     });
   }
@@ -212,7 +212,7 @@ export default class CheckoutPage extends CheckoutLocator {
   private async checkProductSize(product: Product) {
     await test.step(`Check product size: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productSize(product.getSku()),
+        this.productSize(product.getSku())
       );
       //@ts-expect-error: IDE can not reference to this method
       await AssertUtility.assertEqual(actual, product.getSize());
@@ -222,7 +222,7 @@ export default class CheckoutPage extends CheckoutLocator {
   private async checkProductColor(product: Product) {
     await test.step(`Check product color: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productColor(product.getSku()),
+        this.productColor(product.getSku())
       );
       //@ts-expect-error: IDE can not reference to this method
       await AssertUtility.assertEqual(actual, product.getColor());
@@ -256,7 +256,7 @@ export default class CheckoutPage extends CheckoutLocator {
     await test.step(`Check subtotal price`, async () => {
       await AssertUtility.assertEqual(
         subtotalPrice,
-        PriceUtility.convertPriceToString(price),
+        PriceUtility.convertPriceToString(price)
       );
     });
   }
@@ -266,7 +266,7 @@ export default class CheckoutPage extends CheckoutLocator {
     await test.step(`Check total price`, async () => {
       await AssertUtility.assertEqual(
         totalPrice,
-        PriceUtility.convertPriceToString(price),
+        PriceUtility.convertPriceToString(price)
       );
     });
   }

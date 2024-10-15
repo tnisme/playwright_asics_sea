@@ -89,7 +89,7 @@ export class CustomerBuilder {
   }
 
   static setSignUpForNewsletter(
-    signUpForNewsletter: string,
+    signUpForNewsletter: string
   ): typeof CustomerBuilder {
     this.instance["signUpForNewsletter"] = signUpForNewsletter;
     return this;

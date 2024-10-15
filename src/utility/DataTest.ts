@@ -13,15 +13,15 @@ import { faker } from "@faker-js/faker/locale/en"; //https://www.npmjs.com/packa
 
 const customerData = fs.readFileSync(
   path.join(__dirname, "..", "data", "account.json"),
-  "utf8",
+  "utf8"
 );
 const productData = fs.readFileSync(
   path.join(__dirname, "..", "data", "product.json"),
-  "utf8",
+  "utf8"
 );
 const cardData = fs.readFileSync(
   path.join(__dirname, "..", "data", "card.json"),
-  "utf8",
+  "utf8"
 );
 // const productData = fs.readFileSync('src/data/product.json', 'utf8'); TODO why can not find file if using this?
 const customerJSON = JSON.parse(customerData);
