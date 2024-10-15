@@ -5,7 +5,15 @@
   "scripts": {
     "lint": "eslint . --ext .ts",
     "prettier": "prettier . --write",
-    "report": "allure serve allure-results"
+    "report": "allure serve allure-results",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run lint",
+      "npm run prettier",
+      "git add ."
+    ]
   },
   "keywords": [],
   "author": "",
@@ -21,6 +29,8 @@
     "allure-playwright": "^3.0.1",
     "eslint": "^8.57.1",
     "eslint-plugin-playwright": "^1.6.2",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
     "prettier": "^3.3.3"
   },
   "dependencies": {
