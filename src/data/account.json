@@ -1,6 +1,6 @@
 {
   "dev": {
-    "en_SG": {
+    "en-SG": {
       "customer1": {
         "firstname": "auto",
         "lastname": "sg",
@@ -22,7 +22,7 @@
         }
       }
     },
-    "en_MY": {
+    "en-MY": {
       "customer1": {
         "firstname": "auto",
         "lastname": "my",
@@ -44,7 +44,7 @@
         }
       }
     },
-    "en_PH": {
+    "en-PH": {
       "customer1": {
         "firstname": "auto",
         "lastname": "ph",
@@ -67,7 +67,7 @@
         }
       }
     },
-    "th_TH": {
+    "th-TH": {
       "customer1": {
         "firstname": "auto",
         "lastname": "th",
@@ -89,7 +89,7 @@
         }
       }
     },
-    "vi_VN": {
+    "vi-VN": {
       "customer1": {
         "firstname": "Karley",
         "lastname": "Swift",

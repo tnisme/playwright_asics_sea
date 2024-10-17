@@ -9,8 +9,8 @@ import { CreditCardType } from "@entity/data/CreditCardType";
 
 import * as fs from "fs";
 import * as path from "path";
-import { faker } from "@faker-js/faker/locale/en"; //https://www.npmjs.com/package/@faker-js/faker
-import { test } from "@utility/Fixture";
+import { faker } from "@faker-js/faker/locale/en";
+import {test} from "@utility/Fixture"; //https://www.npmjs.com/package/@faker-js/faker
 
 const customerData = fs.readFileSync(
   path.join(__dirname, "..", "data", "account.json"),
@@ -32,8 +32,7 @@ const cardJSON = JSON.parse(cardData);
 export class DataTest {
   static getCustomerInformation(): Customer {
     const customer =
-      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
-        .customer1;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale].customer1;
     return CustomerBuilder.setFirstName(customer.firstname)
       .setLastName(customer.lastname)
       .setEmail(customer.email)
@@ -45,8 +44,7 @@ export class DataTest {
 
   static getRandomCustomerInformation(): Customer {
     const customer =
-      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
-        .customer1;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale].customer1;
     return CustomerBuilder.setFirstName(faker.person.firstName())
       .setLastName(faker.person.lastName())
       .setEmail(faker.internet.email())
@@ -58,8 +56,8 @@ export class DataTest {
 
   static getDefaultAddress(): Address {
     const defaultAddress =
-      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
-        .customer1.default;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale].customer1
+        .default;
     return AddressBuilder.setTitle(defaultAddress.title)
       .setFirstName(defaultAddress.firstname)
       .setLastName(defaultAddress.lastname)
@@ -75,8 +73,8 @@ export class DataTest {
 
   static getRandomAddress(): Address {
     const defaultAddress =
-      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
-        .customer1.default;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale].customer1
+        .default;
     return AddressBuilder.setTitle(defaultAddress.title)
       .setFirstName(faker.person.firstName())
       .setLastName(faker.person.lastName())
@@ -92,9 +90,7 @@ export class DataTest {
 
   static getVariationProduct1(): VariationProduct {
     const product =
-      variationProductJSON[process.env.ENVIRONMENT][
-        test.info().project.use.locale
-      ].vp1;
+      variationProductJSON[process.env.ENVIRONMENT][test.info().project.use.locale].vp1;
     return (
       VariationProductBuilder.setName(product.name)
         .setSku(product.sku)
@@ -114,9 +110,7 @@ export class DataTest {
 
   static getVariationProduct2(): VariationProduct {
     const product =
-      variationProductJSON[process.env.ENVIRONMENT][
-        test.info().project.use.locale
-      ].vp2;
+      variationProductJSON[process.env.ENVIRONMENT][test.info().project.use.locale].vp2;
     return (
       VariationProductBuilder.setName(product.name)
         .setSku(product.sku)

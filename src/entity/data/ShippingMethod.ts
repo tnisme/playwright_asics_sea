@@ -1,3 +1,5 @@
+import { test } from "@utility/Fixture";
+
 export enum ShippingMethod {
   STANDARD,
   NEXT_DAY,
@@ -45,16 +47,16 @@ export class ShippingMethodUtils {
   }
 
   private static getFeeForStandardShippingMethod(subTotal: number): number {
-    switch (process.env.LOCATE) {
-      case "en_SG":
+    switch (test.info().project.use.locale) {
+      case "en-SG":
         return subTotal < 500 ? 5.9 : 0;
-      case "en_MY":
+      case "en-MY":
         return subTotal < 400.001 ? 20 : 0;
-      case "en_PH":
+      case "en-PH":
         return 150;
-      case "th_TH":
+      case "th-TH":
         return subTotal < 2000 ? 200 : 0;
-      case "vi_VN":
+      case "vi-VN":
         return subTotal < 1500000 ? 40000 : 0;
       default:
         return 0;
@@ -62,15 +64,15 @@ export class ShippingMethodUtils {
   }
 
   private static getFeeForNextDayShippingMethod(subTotal: number): number {
-    switch (process.env.LOCATE) {
-      case "vi_VN":
-      case "en_SG":
+    switch (test.info().project.use.locale) {
+      case "vi-VN":
+      case "en-SG":
         return 7.99;
-      case "en_MY":
+      case "en-MY":
         return subTotal < 99.1 ? 7.99 : 0;
-      case "en_PH":
+      case "en-PH":
         return subTotal < 100.01 ? 8 : 0;
-      case "th_TH":
+      case "th-TH":
         return subTotal < 99.01 ? 7.99 : 0;
       default:
         return 0;
@@ -78,16 +80,16 @@ export class ShippingMethodUtils {
   }
 
   private static getIdMethodStandard(): string {
-    switch (process.env.LOCATE) {
-      case "en_SG":
+    switch (test.info().project.use.locale) {
+      case "en-SG":
         return "SGD001";
-      case "en_MY":
+      case "en-MY":
         return "MYR001";
-      case "en_PH":
+      case "en-PH":
         return "PHP004";
-      case "th_TH":
+      case "th-TH":
         return "THB001";
-      case "vi_VN":
+      case "vi-VN":
         return "VND001";
       default:
         return "not defined";
@@ -95,14 +97,14 @@ export class ShippingMethodUtils {
   }
 
   private static getIdMethodNextDay(): string {
-    switch (process.env.LOCATE) {
-      case "en_SG":
+    switch (test.info().project.use.locale) {
+      case "en-SG":
         return "SGD002";
-      case "en_MY":
+      case "en-MY":
         return "MYR003";
-      case "en_PH":
+      case "en-PH":
         return "PHP002";
-      case "th_TH":
+      case "th-TH":
         return "THB002";
       default:
         return "not defined";

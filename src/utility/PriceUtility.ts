@@ -1,8 +1,9 @@
 import { DataTest } from "@utility/DataTest";
+import { test } from "@utility/Fixture";
 
 export default class PriceUtility {
   static convertPriceToString(value: number): string {
-    const locale = process.env.LOCATE.replace("_", "-");
+    const locale = test.info().project.use.locale;
     const currency = DataTest.getCurrency();
     const formattedPrice = new Intl.NumberFormat(locale, {
       style: "currency",
@@ -15,5 +16,9 @@ export default class PriceUtility {
     }
 
     return formattedPrice;
+  }
+
+  static convertStringToPrice(value: string): number {
+    return Number.parseFloat(value.replace(/[^0-9.]+/g, ""));
   }
 }

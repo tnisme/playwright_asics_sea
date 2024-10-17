@@ -1,15 +1,12 @@
-import { Page, test } from "@playwright/test";
+import {Page, test} from "@playwright/test";
 import ThankYouLocator from "../locator/ThankYouLocator";
-import { Product } from "@entity/product/Product";
+import {Product} from "@entity/product/Product";
 import AssertUtility from "@utility/AssertUtility";
 import PriceUtility from "@utility/PriceUtility";
-import { ProductType } from "@entity/data/ProductType";
-import {
-  ShippingMethod,
-  ShippingMethodUtils,
-} from "@entity/data/ShippingMethod";
-import { PaymentMethod, PaymentMethodUtils } from "@entity/data/PaymentMethod";
-import { Address } from "@entity/customer/Address";
+import {ProductType} from "@entity/data/ProductType";
+import {ShippingMethod, ShippingMethodUtils} from "@entity/data/ShippingMethod";
+import {PaymentMethod, PaymentMethodUtils} from "@entity/data/PaymentMethod";
+import {Address} from "@entity/customer/Address";
 
 export default class ThankYouPage extends ThankYouLocator {
   private page: Page;
@@ -38,7 +35,7 @@ export default class ThankYouPage extends ThankYouLocator {
   private async checkProductName(product: Product) {
     await test.step(`Check product name: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productName(product.getSku())
+          this.productName(product.getSku())
       );
       await AssertUtility.assertEqual(actual, product.getName());
     });
@@ -47,13 +44,13 @@ export default class ThankYouPage extends ThankYouLocator {
   private async checkProductSubtotalPrice(product: Product) {
     await test.step(`Check product subtotal price: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productSubtotalPrice(product.getSku())
+          this.productSubtotalPrice(product.getSku())
       );
       await AssertUtility.assertEqual(
-        actual,
-        PriceUtility.convertPriceToString(
-          product.getPrice() * product.getQuantity()
-        )
+          actual,
+          PriceUtility.convertPriceToString(
+              product.getPrice() * product.getQuantity()
+          )
       );
     });
   }
@@ -61,7 +58,7 @@ export default class ThankYouPage extends ThankYouLocator {
   private async checkProductSize(product: Product) {
     await test.step(`Check product size: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productSize(product.getSku())
+          this.productSize(product.getSku())
       );
       //@ts-expect-error: IDE can not reference to this method
       await AssertUtility.assertEqual(actual, product.getSize());
@@ -71,7 +68,7 @@ export default class ThankYouPage extends ThankYouLocator {
   private async checkProductColor(product: Product) {
     await test.step(`Check product color: ${product.getName()}`, async () => {
       const actual = await this.page.innerText(
-        this.productColor(product.getSku())
+          this.productColor(product.getSku())
       );
       //@ts-expect-error: IDE can not reference to this method
       await AssertUtility.assertEqual(actual, product.getColor());
@@ -81,9 +78,9 @@ export default class ThankYouPage extends ThankYouLocator {
   async checkShippingFee(fee: number) {
     const shippingFee = await this.page.innerText(this.shippingFee);
     const shippingFeeExpected =
-      fee > 0
-        ? PriceUtility.convertPriceToString(fee)
-        : this.getShippingFeeText();
+        fee > 0
+            ? PriceUtility.convertPriceToString(fee)
+            : this.getShippingFeeText();
     await test.step(`Check shipping fee: ${shippingFeeExpected}`, async () => {
       await AssertUtility.assertEqual(shippingFee, shippingFeeExpected);
     });
@@ -104,8 +101,8 @@ export default class ThankYouPage extends ThankYouLocator {
     const subtotalPrice = await this.page.innerText(this.summarySubtotalPrice);
     await test.step(`Check subtotal price`, async () => {
       await AssertUtility.assertEqual(
-        subtotalPrice,
-        PriceUtility.convertPriceToString(price)
+          subtotalPrice,
+          PriceUtility.convertPriceToString(price)
       );
     });
   }
@@ -114,8 +111,8 @@ export default class ThankYouPage extends ThankYouLocator {
     const totalPrice = await this.page.innerText(this.summaryGrandTotalPrice);
     await test.step(`Check total price`, async () => {
       await AssertUtility.assertEqual(
-        totalPrice,
-        PriceUtility.convertPriceToString(price)
+          totalPrice,
+          PriceUtility.convertPriceToString(price)
       );
     });
   }
@@ -123,17 +120,12 @@ export default class ThankYouPage extends ThankYouLocator {
   async checkShippingMethod(method: ShippingMethod) {
     const shippingMethod = await this.page.innerText(this.shippingMethod);
     await test.step(`Check shipping method`, async () => {
-      await AssertUtility.assertEqual(
-        shippingMethod,
-        "Method " + ShippingMethodUtils.getName(method)
-      );
+      await AssertUtility.assertEqual(shippingMethod, "Method " + ShippingMethodUtils.getName(method));
     });
   }
 
   async checkShippingAddress(address: Address) {
-    const shippingAddress = (
-      await this.page.innerText(this.shippingAddress)
-    ).replace(/\n/g, "");
+    const shippingAddress = (await this.page.innerText(this.shippingAddress)).replace(/\n/g, "");
     const addressFormatted = this.formatAddress(address);
     await test.step(`Check shipping address`, async () => {
       await AssertUtility.assertEqual(shippingAddress, addressFormatted);
@@ -141,9 +133,7 @@ export default class ThankYouPage extends ThankYouLocator {
   }
 
   async checkBillingAddress(address: Address) {
-    const billingAddress = (
-      await this.page.innerText(this.billingAddress)
-    ).replace(/\n/g, "");
+    const billingAddress = (await this.page.innerText(this.billingAddress)).replace(/\n/g, "");
     const addressFormatted = this.formatAddress(address);
     await test.step(`Check billing address`, async () => {
       await AssertUtility.assertEqual(billingAddress, addressFormatted);
@@ -153,34 +143,18 @@ export default class ThankYouPage extends ThankYouLocator {
   async checkPaymentMethod(method: PaymentMethod) {
     const paymentMethod = await this.page.innerText(this.paymentMethod);
     await test.step(`Check payment method`, async () => {
-      await AssertUtility.assertEqual(
-        paymentMethod,
-        PaymentMethodUtils.getName(method)
-      );
+      await AssertUtility.assertEqual(paymentMethod, PaymentMethodUtils.getName(method));
     });
   }
 
   async checkPaymentAmount(info: number) {
     const paymentInfo = await this.page.innerText(this.paymentAmount);
     await test.step(`Check payment amount`, async () => {
-      await AssertUtility.assertEqual(
-        paymentInfo,
-        PriceUtility.convertPriceToString(info)
-      );
+      await AssertUtility.assertEqual(paymentInfo, PriceUtility.convertPriceToString(info));
     });
   }
 
   private formatAddress(address: Address) {
-    return (
-      address.getFirstName() +
-      " " +
-      address.getLastName() +
-      address.getAddress1() +
-      address.getAddress2() +
-      address.getCity() +
-      ", " +
-      address.getZipCode() +
-      address.getCountry()
-    );
+    return address.getFirstName() + " " + address.getLastName() + address.getAddress1() + address.getAddress2() + address.getCity() + ", " + address.getState() + " " + address.getZipCode() + address.getCountry();
   }
 }

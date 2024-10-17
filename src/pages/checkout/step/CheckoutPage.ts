@@ -20,6 +20,7 @@ export default class CheckoutPage extends CheckoutLocator {
   }
 
   async fillInShippingInformation(address: Address, customer?: Customer) {
+    const locate = test.info().project.use.locale;
     await test.step("Fill in shipping information", async () => {
       await this.setShippingFirstName(address.getFirstName());
       await this.setShippingLastName(address.getLastName());
@@ -27,19 +28,19 @@ export default class CheckoutPage extends CheckoutLocator {
       await this.setShippingPhoneNumber(address.getPhoneNumber());
 
       // eslint-disable-next-line playwright/no-conditional-in-test
-      if (process.env.LOCATE == "vi_VN") {
+      if (locate == "vi-VN") {
         await this.setShippingCity(address.getCity());
         await this.setShippingState(address.getState());
         await this.setShippingWard(address.getWard());
       } else {
         // eslint-disable-next-line playwright/no-conditional-in-test
-        if (process.env.LOCATE != "en_SG") {
+        if (locate != "en-SG") {
           await this.setShippingState(address.getState());
           await this.setShippingCity(address.getCity());
         }
         await this.setShippingPostalCode(address.getZipCode());
         // eslint-disable-next-line playwright/no-conditional-in-test
-        if (process.env.LOCATE == "en_PH") {
+        if (locate == "en-PH") {
           await this.setShippingBangaray(address.getBarangay());
         }
       }
@@ -107,7 +108,8 @@ export default class CheckoutPage extends CheckoutLocator {
   }
 
   private async setShippingCity(city: string) {
-    if (process.env.LOCATE == "vi_VN" || process.env.LOCATE == "en_PH") {
+    const locate = test.info().project.use.locale;
+    if (locate == "vi-VN" || locate == "en-PH") {
       await test.step(`Set select option shipping city: ${city}`, async () => {
         await this.page.selectOption(this.shippingCity, city);
       });
@@ -241,10 +243,10 @@ export default class CheckoutPage extends CheckoutLocator {
   }
 
   private getShippingFeeText(): string {
-    switch (process.env.LOCATE) {
-      case "th_TH":
+    switch (test.info().project.use.locale) {
+      case "th-TH":
         return "ฟรี";
-      case "vi_VN":
+      case "vi-VN":
         return "Miễn phí";
       default:
         return "Free";

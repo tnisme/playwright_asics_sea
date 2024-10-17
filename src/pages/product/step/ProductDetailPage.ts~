@@ -53,8 +53,8 @@ export default class ProductDetailPage extends ProductDetailLocator {
   }
 
   async getPrice(): Promise<number> {
-    return PriceUtility.convertStringToPrice(
-      await this.page.innerText(this.price)
-    );
+    const raw = await this.page.innerText(this.price);
+    const price = PriceUtility.convertStringToPrice(raw);
+    return price;
   }
 }

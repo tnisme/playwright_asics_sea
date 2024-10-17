@@ -18,6 +18,8 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
 }) => {
   await homePage.search(variantProduct1.getName());
   await productListPage.viewProductDetail(variantProduct1);
+  await productDetailPage.setSize(variantProduct1.getSize());
+  variantProduct1.setPrice(await productDetailPage.getPrice());
   await productDetailPage.addToCart(variantProduct1);
 
   await homePage.viewCart();
@@ -44,4 +46,14 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   await worldPayPage.fillInCard(visaCard);
   await worldPayPage.makePayment();
   await thankYouPage.getOrderNumber();
+
+  await thankYouPage.checkProduct(variantProduct1);
+  await thankYouPage.checkShippingFee(shippingFee);
+  await thankYouPage.checkSummarySubtotalPrice(subTotal);
+  await thankYouPage.checkSummaryGrandTotalPrice(grandTotal);
+  await thankYouPage.checkShippingMethod(shippingMethodStandard);
+  await thankYouPage.checkShippingAddress(randomAddress);
+  await thankYouPage.checkBillingAddress(randomAddress);
+  await thankYouPage.checkPaymentMethod(paymentMethodCreditCard);
+  await thankYouPage.checkPaymentAmount(grandTotal);
 });
