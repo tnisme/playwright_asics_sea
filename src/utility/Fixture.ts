@@ -14,6 +14,7 @@ import {
 import { PaymentMethod } from "@entity/data/PaymentMethod";
 import { CreditCardType } from "@entity/data/CreditCardType";
 import ThankYouPage from "@pages/checkout/step/ThankYouPage";
+import {Product} from "@entity/product/Product";
 
 export const test = base.extend({
   page: async ({ page }, use) => {
@@ -61,6 +62,10 @@ export const test = base.extend({
     await use(DataTest.getVariationProduct1());
   },
 
+  variantProduct2: async ({}, use) => {
+    await use(DataTest.getVariationProduct2());
+  },
+
   defaultAddress: async ({}, use) => {
     await use(DataTest.getDefaultAddress());
   },
@@ -85,13 +90,22 @@ export const test = base.extend({
     await use(DataTest.getCard(CreditCardType.VISA));
   },
 
-  calculated: async ({ variantProduct1, shippingMethodStandard }, use) => {
-    const subTotal = variantProduct1.getPrice() * variantProduct1.getQuantity();
-    const shippingFee = ShippingMethodUtils.getFee(
-      shippingMethodStandard,
-      subTotal
-    );
-    const grandTotal = subTotal + shippingFee;
-    await use({ subTotal, shippingFee, grandTotal });
+  calculated: async ({}, use) => {
+    await use({
+      calculateTotal: (products: Product | Product[], shippingMethod: ShippingMethod) => {
+        let subTotal = 0;
+        if (Array.isArray(products)) {
+          products.forEach(product => {
+            subTotal += product.getPrice() * product.getQuantity();
+          });
+        } else {
+          subTotal = products.getPrice() * products.getQuantity();
+        }
+        const shippingFee = ShippingMethodUtils.getFee(shippingMethod, subTotal);
+        const grandTotal = subTotal + shippingFee;
+
+        return { subTotal, shippingFee, grandTotal };
+      },
+    });
   },
 });

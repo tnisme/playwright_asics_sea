@@ -1,11 +1,14 @@
 import { Page, test } from "@playwright/test";
 import HomeLocator from "../locator/HomeLocator";
+import WaitUtility from "@utility/WaitUtility";
 
 export default class HomePage extends HomeLocator {
   private page: Page;
+  private waitUtility: WaitUtility;
   constructor(page: Page) {
     super();
     this.page = page;
+    this.waitUtility = new WaitUtility(this.page);
   }
 
   async isGuest(): Promise<boolean> {
@@ -23,8 +26,10 @@ export default class HomePage extends HomeLocator {
 
   async search(key: string) {
     await test.step(`search product: ${key}`, async () => {
+      const currentUrl = this.page.url();
       await this.page.fill(this.searchLocator, key);
       await this.page.keyboard.press("Enter");
+      await this.waitUtility.waitUrlChange(currentUrl);
       await this.page.waitForLoadState("load");
     });
   }

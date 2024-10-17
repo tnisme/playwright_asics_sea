@@ -120,7 +120,7 @@ export class DataTest {
         .setSize(product.size)
         .setColor(product.color)
         .setWidth(product.width)
-        .setQuantity(product.quantity)
+        .setQuantity(product.qty)
         .setErpProductId(product.erpProductId)
         .setWarehouseId(product.warehouseId)
         .build()
@@ -139,19 +139,13 @@ export class DataTest {
   }
 
   static getCurrency(): string {
-    switch (process.env.LOCATE) {
-      case "en_SG":
-        return "SGD";
-      case "en_MY":
-        return "MYR";
-      case "en_PH":
-        return "PHP";
-      case "th_TH":
-        return "THB";
-      case "vi_VN":
-        return "VND";
-      default:
-        return "invalid";
-    }
+    const currencyMap: { [key: string]: string } = {
+      'en_SG': 'SGD', // Singapore Dollar
+      'en_MY': 'MYR', // Malaysian Ringgit
+      'en_PH': 'PHP', // Philippine Peso
+      'th_TH': 'THB', // Thai Baht
+      'vi_VN': 'VND'  // Vietnamese Dong
+    };
+    return currencyMap[process.env.LOCATE] || 'USD';
   }
 }

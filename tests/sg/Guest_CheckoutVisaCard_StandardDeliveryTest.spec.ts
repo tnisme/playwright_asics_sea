@@ -14,7 +14,7 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   shippingMethodStandard,
   paymentMethodCreditCard,
   visaCard,
-  calculated,
+  calculated
 }) => {
   await homePage.search(variantProduct1.getName());
   await productListPage.viewProductDetail(variantProduct1);
@@ -30,10 +30,11 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   await checkoutPage.submitShippingMethod();
   await checkoutPage.setPaymentMethod(paymentMethodCreditCard);
 
+  const { subTotal, shippingFee, grandTotal } = calculated.calculateTotal(variantProduct1, shippingMethodStandard);
   await checkoutPage.checkProduct(variantProduct1);
-  await checkoutPage.checkShippingFee(calculated.shippingFee);
-  await checkoutPage.checkSubtotalPrice(calculated.subTotal);
-  await checkoutPage.checkGrandTotalPrice(calculated.grandTotal);
+  await checkoutPage.checkShippingFee(shippingFee);
+  await checkoutPage.checkSubtotalPrice(subTotal);
+  await checkoutPage.checkGrandTotalPrice(grandTotal);
 
   await checkoutPage.placeOrder();
 

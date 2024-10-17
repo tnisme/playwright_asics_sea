@@ -1,17 +1,16 @@
 import { DataTest } from "@utility/DataTest";
 
 export default class PriceUtility {
-  static convertPriceToString(price: number): string {
-    return price.toLocaleString(process.env.LOCATE.replace("_", "-"), {
-      style: "currency",
-      currency: DataTest.getCurrency(),
-    });
-  }
+  static convertPriceToString(value: number): string {
+    const locale = process.env.LOCATE.replace('_', '-');
+    const currency = DataTest.getCurrency();
+    const formattedPrice = new Intl.NumberFormat(locale, { style: 'currency', currency: currency }).format(value);
 
-  // static convertPriceToString(price: number): string {
-  //   return new Intl.NumberFormat(process.env.LOCATE.replace("_", "-"), {
-  //     style: "currency",
-  //     currency: DataTest.getCurrency(),
-  //   }).format(price);
-  // }
+    // For specific cases like Singapore that require "S$" instead of "$"
+    if (locale === 'en-SG') {
+      return formattedPrice.replace('$', 'S$ ');
+    }
+
+    return formattedPrice;
+  }
 }

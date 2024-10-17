@@ -37,9 +37,12 @@ export default class ProductDetailPage extends ProductDetailLocator {
   }
 
   async setColor(color: string) {
-    await test.step(`Set color ${color}`, async () => {
-      await this.page.click(this.productColor(color));
-    });
+    const localColor = this.page.locator(this.productColor(color));
+    if (await localColor.isVisible()) {
+      await test.step(`Set color ${color}`, async () => {
+        await this.page.click(this.productColor(color));
+      });
+    }
   }
 
   async closeCartDraw() {
