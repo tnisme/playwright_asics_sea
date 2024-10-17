@@ -31,8 +31,8 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   await checkoutPage.setPaymentMethod(paymentMethodCreditCard);
 
   const { subTotal, shippingFee, grandTotal } = calculated.calculateTotal(
-    shippingMethodStandard,
-    variantProduct1
+    variantProduct1,
+    shippingMethodStandard
   );
   await checkoutPage.checkProduct(variantProduct1);
   await checkoutPage.checkShippingFee(shippingFee);

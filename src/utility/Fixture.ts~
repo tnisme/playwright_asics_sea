@@ -97,9 +97,13 @@ export const test = base.extend({
         ...products: Product[]
       ) => {
         let subTotal = 0;
-        products.forEach((product) => {
-          subTotal += product.getPrice() * product.getQuantity();
-        });
+        if (Array.isArray(products)) {
+          products.forEach((product) => {
+            subTotal += product.getPrice() * product.getQuantity();
+          });
+        } else {
+          subTotal = products.getPrice() * products.getQuantity();
+        }
         const shippingFee = ShippingMethodUtils.getFee(
           shippingMethod,
           subTotal
