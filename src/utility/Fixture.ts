@@ -14,7 +14,7 @@ import {
 import { PaymentMethod } from "@entity/data/PaymentMethod";
 import { CreditCardType } from "@entity/data/CreditCardType";
 import ThankYouPage from "@pages/checkout/step/ThankYouPage";
-import {Product} from "@entity/product/Product";
+import { Product } from "@entity/product/Product";
 
 export const test = base.extend({
   page: async ({ page }, use) => {
@@ -92,16 +92,22 @@ export const test = base.extend({
 
   calculated: async ({}, use) => {
     await use({
-      calculateTotal: (products: Product | Product[], shippingMethod: ShippingMethod) => {
+      calculateTotal: (
+        products: Product | Product[],
+        shippingMethod: ShippingMethod
+      ) => {
         let subTotal = 0;
         if (Array.isArray(products)) {
-          products.forEach(product => {
+          products.forEach((product) => {
             subTotal += product.getPrice() * product.getQuantity();
           });
         } else {
           subTotal = products.getPrice() * products.getQuantity();
         }
-        const shippingFee = ShippingMethodUtils.getFee(shippingMethod, subTotal);
+        const shippingFee = ShippingMethodUtils.getFee(
+          shippingMethod,
+          subTotal
+        );
         const grandTotal = subTotal + shippingFee;
 
         return { subTotal, shippingFee, grandTotal };

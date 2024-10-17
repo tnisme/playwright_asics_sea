@@ -140,12 +140,12 @@ export class DataTest {
 
   static getCurrency(): string {
     const currencyMap: { [key: string]: string } = {
-      'en_SG': 'SGD', // Singapore Dollar
-      'en_MY': 'MYR', // Malaysian Ringgit
-      'en_PH': 'PHP', // Philippine Peso
-      'th_TH': 'THB', // Thai Baht
-      'vi_VN': 'VND'  // Vietnamese Dong
+      en_SG: "SGD", // Singapore Dollar
+      en_MY: "MYR", // Malaysian Ringgit
+      en_PH: "PHP", // Philippine Peso
+      th_TH: "THB", // Thai Baht
+      vi_VN: "VND", // Vietnamese Dong
     };
-    return currencyMap[process.env.LOCATE] || 'USD';
+    return currencyMap[process.env.LOCATE] || "USD";
   }
 }
