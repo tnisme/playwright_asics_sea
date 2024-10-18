@@ -17,7 +17,8 @@ To set up and run the tests locally, follow the steps below:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/username/asics-playwright-tests.git
-   
+
+   ```
 2. **Navigate to the repository**:
    ```bash
    cd asics-playwright-tests
@@ -43,27 +44,30 @@ To configure the tests, follow these steps:
 
 ### Run tests:
 
-   1. To run full test suite:
+1.  To run full test suite:
 
-      ```bash
-      npm run test
-      ```
+    ```bash
+    npm run test
+    ```
 
-   2. To run a single test:
+2.  To run a single test:
 
-      ```bash
-      npm run test <path_to_test_file>
-      ```
+    ```bash
+    npm run test <path_to_test_file>
+    ```
 
 ## View report:
+
 To generate Allure report use below command
-   ```bash
-   npm run report
-   ```
+
+```bash
+npm run report
+```
 
 ## Commit and push
 
 Before committing and pushing, make sure you have run this command to init [husky](https://www.npmjs.com/package/husky).
-   ```bash
-   npx husky init
-   ```
+
+```bash
+npx husky init
+```

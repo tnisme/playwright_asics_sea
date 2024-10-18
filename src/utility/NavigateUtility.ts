@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
 import HomePage from "@pages/utility/step/HomePage";
-import { test } from "@utility/Fixture";
+import { test } from "@fixture/Fixture";
 
 export default class NavigateUtility {
   public static async navigateToHomePage(page: Page): Promise<HomePage> {

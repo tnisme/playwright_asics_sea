@@ -1,5 +1,5 @@
 import { DataTest } from "@utility/DataTest";
-import { test } from "@utility/Fixture";
+import { test } from "@fixture/Fixture";
 
 export default class PriceUtility {
   static convertPriceToString(value: number): string {

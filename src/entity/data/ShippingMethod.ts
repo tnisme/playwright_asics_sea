@@ -1,4 +1,4 @@
-import { test } from "@utility/Fixture";
+import { test } from "@fixture/Fixture";
 
 export enum ShippingMethod {
   STANDARD,

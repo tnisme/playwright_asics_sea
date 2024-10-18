@@ -1,4 +1,4 @@
-import { test } from "@utility/Fixture";
+import { test } from "@fixture/Fixture";
 
 test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   homePage,
@@ -8,7 +8,7 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   checkoutPage,
   worldPayPage,
   thankYouPage,
-  randomCustomer,
+  randomCustomerInformation,
   variantProduct1,
   randomAddress,
   shippingMethodStandard,
@@ -25,14 +25,17 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   await homePage.viewCart();
   await shoppingCartPage.checkout();
 
-  await checkoutPage.fillInShippingInformation(randomAddress, randomCustomer);
+  await checkoutPage.fillInShippingInformation(
+    randomAddress,
+    randomCustomerInformation
+  );
   await checkoutPage.submitShipping();
   await checkoutPage.setShippingMethod(shippingMethodStandard);
   await checkoutPage.isCreditCardMethodChecked();
   await checkoutPage.submitShippingMethod();
   await checkoutPage.setPaymentMethod(paymentMethodCreditCard);
 
-  const { subTotal, shippingFee, grandTotal } = calculated.calculateTotal(
+  const { subTotal, shippingFee, grandTotal } = calculated(
     shippingMethodStandard,
     variantProduct1
   );

@@ -4,7 +4,8 @@
     "paths": {
       "@pages/*": ["pages/*"],
       "@entity/*": ["entity/*"],
-      "@utility/*": ["utility/*"]
+      "@utility/*": ["utility/*"],
+      "@fixture/*": ["fixture/*"]
     },
     "target": "ESNext",
     "module": "CommonJS",

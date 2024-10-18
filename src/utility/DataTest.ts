@@ -10,7 +10,7 @@ import { CreditCardType } from "@entity/data/CreditCardType";
 import * as fs from "fs";
 import * as path from "path";
 import { faker } from "@faker-js/faker/locale/en"; //https://www.npmjs.com/package/@faker-js/faker
-import { test } from "@utility/Fixture";
+import { test } from "@fixture/Fixture";
 
 const customerData = fs.readFileSync(
   path.join(__dirname, "..", "data", "account.json"),
