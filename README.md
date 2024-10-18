@@ -60,3 +60,10 @@ To generate Allure report use below command
    ```bash
    npm run report
    ```
+
+## Commit and push
+
+Before committing and pushing, make sure you have run this command to init [husky](https://www.npmjs.com/package/husky).
+   ```bash
+   npx husky init
+   ```
