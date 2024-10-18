@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "test": "playwright test",
     "lint": "eslint . --ext .ts --fix",
     "prettier": "prettier . --write",
     "report": "allure serve allure-results",
