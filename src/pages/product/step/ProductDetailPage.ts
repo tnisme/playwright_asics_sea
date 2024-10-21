@@ -1,7 +1,9 @@
-import { Page, test } from "@playwright/test";
+import { Page } from "@playwright/test";
 import ProductDetailLocator from "../locator/ProductDetailLocator";
 import { Product } from "@entity/product/Product";
 import PriceUtility from "@utility/PriceUtility";
+import { step } from "@fixture/Fixture";
+import { VariationProduct } from "@entity/product/VariationProduct";
 
 export default class ProductDetailPage extends ProductDetailLocator {
   private page: Page;
@@ -10,21 +12,27 @@ export default class ProductDetailPage extends ProductDetailLocator {
     this.page = page;
   }
 
+  @step("Add product to cart")
   async addToCart(product?: Product) {
     if (product) {
-      await test.step("Set variant", async () => {
-        //@ts-expect-error: IDE can not reference to this method
-        await this.setColor(product.getColor());
-        //@ts-expect-error: IDE can not reference to this method
-        await this.setSize(product.getSize());
-      });
+      await this.setVariant(<VariationProduct>product);
     }
-    await test.step("Add product to cart", async () => {
-      await this.page.click(this.addToCartButton);
-      await this.closeCartDraw();
-    });
+    await this.clickAddToCartButton();
   }
 
+  @step("Set variant")
+  async setVariant(variantProduct: VariationProduct) {
+    await this.setColor(variantProduct.getColor());
+    await this.setSize(variantProduct.getSize());
+  }
+
+  @step("Click add to cart button")
+  async clickAddToCartButton() {
+    await this.page.click(this.addToCartButton);
+    await this.closeCartDraw();
+  }
+
+  @step("Set size")
   async setSize(size: string) {
     let localSize: string;
     if (size.includes("/")) {
@@ -32,24 +40,20 @@ export default class ProductDetailPage extends ProductDetailLocator {
     } else {
       localSize = size;
     }
-    await test.step(`Set size ${size}`, async () => {
-      await this.page.click(this.productSize(localSize));
-    });
+    await this.page.click(this.productSize(localSize));
   }
 
+  @step("Set color")
   async setColor(color: string) {
     const localColor = this.page.locator(this.productColor(color));
     if (await localColor.isVisible()) {
-      await test.step(`Set color ${color}`, async () => {
-        await this.page.click(this.productColor(color));
-      });
+      await this.page.click(this.productColor(color));
     }
   }
 
+  @step("Close cart draw")
   async closeCartDraw() {
-    await test.step("Close cart draw", async () => {
-      await this.page.click(this.closeCartDrawButton);
-    });
+    await this.page.click(this.closeCartDrawButton);
   }
 
   async getPrice(): Promise<number> {

@@ -10,6 +10,7 @@ import {
 } from "@entity/data/ShippingMethod";
 import { PaymentMethod, PaymentMethodUtils } from "@entity/data/PaymentMethod";
 import { Address } from "@entity/customer/Address";
+import { step } from "@fixture/Fixture";
 
 export default class ThankYouPage extends ThankYouLocator {
   private page: Page;
@@ -23,70 +24,64 @@ export default class ThankYouPage extends ThankYouLocator {
     return orderNumber;
   }
 
+  @step("Check product")
   async checkProduct(product: Product) {
-    await test.step(`Check product: ${product.getName()}`, async () => {
-      await this.checkProductName(product);
-      await this.checkProductSubtotalPrice(product);
-      // eslint-disable-next-line playwright/no-conditional-in-test
-      if (product.getProductType() === ProductType.VARIATION) {
-        await this.checkProductSize(product);
-        await this.checkProductColor(product);
-      }
-    });
+    await this.checkProductName(product);
+    await this.checkProductSubtotalPrice(product);
+    // eslint-disable-next-line playwright/no-conditional-in-test
+    if (product.getProductType() === ProductType.VARIATION) {
+      await this.checkProductSize(product);
+      await this.checkProductColor(product);
+    }
   }
 
+  @step("Check product name")
   private async checkProductName(product: Product) {
-    await test.step(`Check product name: ${product.getName()}`, async () => {
-      const actual = await this.page.innerText(
-        this.productName(product.getSku())
-      );
-      await AssertUtility.assertEqual(actual, product.getName());
-    });
+    const actual = await this.page.innerText(
+      this.productName(product.getSku())
+    );
+    await AssertUtility.assertEqual(actual, product.getName());
   }
 
+  @step("Check product subtotal price")
   private async checkProductSubtotalPrice(product: Product) {
-    await test.step(`Check product subtotal price: ${product.getName()}`, async () => {
-      const actual = await this.page.innerText(
-        this.productSubtotalPrice(product.getSku())
-      );
-      await AssertUtility.assertEqual(
-        actual,
-        PriceUtility.convertPriceToString(
-          product.getPrice() * product.getQuantity()
-        )
-      );
-    });
+    const actual = await this.page.innerText(
+      this.productSubtotalPrice(product.getSku())
+    );
+    await AssertUtility.assertEqual(
+      actual,
+      PriceUtility.convertPriceToString(
+        product.getPrice() * product.getQuantity()
+      )
+    );
   }
 
+  @step("Check product size")
   private async checkProductSize(product: Product) {
-    await test.step(`Check product size: ${product.getName()}`, async () => {
-      const actual = await this.page.innerText(
-        this.productSize(product.getSku())
-      );
-      //@ts-expect-error: IDE can not reference to this method
-      await AssertUtility.assertEqual(actual, product.getSize());
-    });
+    const actual = await this.page.innerText(
+      this.productSize(product.getSku())
+    );
+    //@ts-expect-error: IDE can not reference to this method
+    await AssertUtility.assertEqual(actual, product.getSize());
   }
 
+  @step("Check product color")
   private async checkProductColor(product: Product) {
-    await test.step(`Check product color: ${product.getName()}`, async () => {
-      const actual = await this.page.innerText(
-        this.productColor(product.getSku())
-      );
-      //@ts-expect-error: IDE can not reference to this method
-      await AssertUtility.assertEqual(actual, product.getColor());
-    });
+    const actual = await this.page.innerText(
+      this.productColor(product.getSku())
+    );
+    //@ts-expect-error: IDE can not reference to this method
+    await AssertUtility.assertEqual(actual, product.getColor());
   }
 
+  @step("Check shipping fee")
   async checkShippingFee(fee: number) {
     const shippingFee = await this.page.innerText(this.shippingFee);
     const shippingFeeExpected =
       fee > 0
         ? PriceUtility.convertPriceToString(fee)
         : this.getShippingFeeText();
-    await test.step(`Check shipping fee: ${shippingFeeExpected}`, async () => {
-      await AssertUtility.assertEqual(shippingFee, shippingFeeExpected);
-    });
+    await AssertUtility.assertEqual(shippingFee, shippingFeeExpected);
   }
 
   private getShippingFeeText(): string {
@@ -100,74 +95,67 @@ export default class ThankYouPage extends ThankYouLocator {
     }
   }
 
+  @step("Check summary subtotal price")
   async checkSummarySubtotalPrice(price: number) {
     const subtotalPrice = await this.page.innerText(this.summarySubtotalPrice);
-    await test.step(`Check subtotal price`, async () => {
-      await AssertUtility.assertEqual(
-        subtotalPrice,
-        PriceUtility.convertPriceToString(price)
-      );
-    });
+    await AssertUtility.assertEqual(
+      subtotalPrice,
+      PriceUtility.convertPriceToString(price)
+    );
   }
 
+  @step("Check summary grand total price")
   async checkSummaryGrandTotalPrice(price: number) {
     const totalPrice = await this.page.innerText(this.summaryGrandTotalPrice);
-    await test.step(`Check total price`, async () => {
-      await AssertUtility.assertEqual(
-        totalPrice,
-        PriceUtility.convertPriceToString(price)
-      );
-    });
+    await AssertUtility.assertEqual(
+      totalPrice,
+      PriceUtility.convertPriceToString(price)
+    );
   }
 
+  @step("Check shipping method")
   async checkShippingMethod(method: ShippingMethod) {
     const shippingMethod = await this.page.innerText(this.shippingMethod);
-    await test.step(`Check shipping method`, async () => {
-      await AssertUtility.assertEqual(
-        shippingMethod,
-        "Method " + ShippingMethodUtils.getName(method)
-      );
-    });
+    await AssertUtility.assertEqual(
+      shippingMethod,
+      "Method " + ShippingMethodUtils.getName(method)
+    );
   }
 
+  @step("Check shipping address")
   async checkShippingAddress(address: Address) {
     const shippingAddress = (
       await this.page.innerText(this.shippingAddress)
     ).replace(/\n/g, "");
     const addressFormatted = this.formatAddress(address);
-    await test.step(`Check shipping address`, async () => {
-      await AssertUtility.assertEqual(shippingAddress, addressFormatted);
-    });
+    await AssertUtility.assertEqual(shippingAddress, addressFormatted);
   }
 
+  @step("Check billing address")
   async checkBillingAddress(address: Address) {
     const billingAddress = (
       await this.page.innerText(this.billingAddress)
     ).replace(/\n/g, "");
     const addressFormatted = this.formatAddress(address);
-    await test.step(`Check billing address`, async () => {
-      await AssertUtility.assertEqual(billingAddress, addressFormatted);
-    });
+    await AssertUtility.assertEqual(billingAddress, addressFormatted);
   }
 
+  @step("Check payment method")
   async checkPaymentMethod(method: PaymentMethod) {
     const paymentMethod = await this.page.innerText(this.paymentMethod);
-    await test.step(`Check payment method`, async () => {
-      await AssertUtility.assertEqual(
-        paymentMethod,
-        PaymentMethodUtils.getName(method)
-      );
-    });
+    await AssertUtility.assertEqual(
+      paymentMethod,
+      PaymentMethodUtils.getName(method)
+    );
   }
 
+  @step("Check payment amount")
   async checkPaymentAmount(info: number) {
     const paymentInfo = await this.page.innerText(this.paymentAmount);
-    await test.step(`Check payment amount`, async () => {
-      await AssertUtility.assertEqual(
-        paymentInfo,
-        PriceUtility.convertPriceToString(info)
-      );
-    });
+    await AssertUtility.assertEqual(
+      paymentInfo,
+      PriceUtility.convertPriceToString(info)
+    );
   }
 
   private formatAddress(address: Address) {

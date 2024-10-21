@@ -1,6 +1,7 @@
-import { Page, test } from "@playwright/test";
+import { Page } from "@playwright/test";
 import MolpayLocator from "../locator/MolpayLocator";
 import { CreditCard } from "@entity/customer/CreditCard";
+import { step } from "@fixture/Fixture";
 
 export default class MolpayPage extends MolpayLocator {
   private page: Page;
@@ -9,98 +10,81 @@ export default class MolpayPage extends MolpayLocator {
     this.page = page;
   }
 
+  @step("Fill in card")
   async fillInCard(card: CreditCard) {
-    await test.step(
-      "Fill in card: " +
-        `${card.getType()}, ${card.getNumber()}, ${card.getName()}, ${card.getMonth()}, ${card.getYear()}, ${card.getCid()}`,
-      async () => {
-        await this.setCardNumber(card.getNumber());
-        await this.setCardCVV(card.getCid());
-        await this.setCardExpiry(card);
-      }
-    );
+    await this.setCardNumber(card.getNumber());
+    await this.setCardCVV(card.getCid());
+    await this.setCardExpiry(card);
   }
 
+  @step("Set card number")
   private async setCardNumber(number: string) {
-    await test.step("Set card number: " + number, async () => {
-      await this.page.fill(this.cardNumber, number);
-    });
+    await this.page.fill(this.cardNumber, number);
   }
 
+  @step("Set card CVV")
   private async setCardCVV(cid: string) {
-    await test.step("Set card CVV: " + cid, async () => {
-      await this.page.fill(this.cardCVV, cid);
-    });
+    await this.page.fill(this.cardCVV, cid);
   }
 
+  @step("Set card expiry")
   private async setCardExpiry(card: CreditCard) {
-    await test.step(`Set card expiry: ${card.getMonth()}, ${card.getYear()}`, async () => {
-      await this.page.selectOption(
-        this.cardMonth,
-        card.getMonth().replace(/^0/g, "")
-      );
-      await this.page.selectOption(this.cardYear, card.getYear());
-    });
+    await this.page.selectOption(
+      this.cardMonth,
+      card.getMonth().replace(/^0/g, "")
+    );
+    await this.page.selectOption(this.cardYear, card.getYear());
   }
 
+  @step("Select country")
   async selectCountry() {
-    await test.step(`Select country`, async () => {
-      await this.page.check(this.country);
-    });
+    await this.page.check(this.country);
   }
 
+  @step("Fill bank information")
   async fillBankInformation(bankName: string, description: string) {
-    await test.step(`Fill bank information: ${bankName}, ${description}`, async () => {
-      await this.fillInBankName(bankName);
-      await this.fillInDescription(description);
-    });
+    await this.fillInBankName(bankName);
+    await this.fillInDescription(description);
   }
 
+  @step("Fill in bank name")
   private async fillInBankName(bankName: string) {
-    await test.step("Fill in bank name: " + bankName, async () => {
-      await this.page.fill(this.bankName, bankName);
-    });
+    await this.page.fill(this.bankName, bankName);
   }
 
+  @step("Fill in description")
   private async fillInDescription(description: string) {
-    await test.step("Fill in description: " + description, async () => {
-      await this.page.fill(this.description, description);
-    });
+    await this.page.fill(this.description, description);
   }
 
+  @step("Agree terms")
   async agreeTerms() {
-    await test.step("Agree terms", async () => {
-      await this.page.check(this.terms);
-    });
+    await this.page.check(this.terms);
   }
 
+  @step("Pay online")
   async payOnline() {
-    await test.step("Pay online", async () => {
-      await this.page.click(this.pay);
-      await this.page.waitForLoadState("load");
-    });
+    await this.page.click(this.pay);
+    await this.page.waitForLoadState("load");
   }
 
+  @step("Request OTP")
   async requestOTP() {
-    await test.step("Request OTP", async () => {
-      await this.page.click(this.requestOTPButton);
-    });
+    await this.page.click(this.requestOTPButton);
   }
 
+  @step("Fill in OTP")
   async fillInOTP() {
     const otp = (await this.page.locator(this.otp).innerText()).replace(
       "OTP/TAC: ",
       ""
     );
-    await test.step("Fill in OTP: " + otp, async () => {
-      await this.page.fill(this.otpInput, otp);
-    });
+    await this.page.fill(this.otpInput, otp);
   }
 
+  @step("Pay now")
   async payNow() {
-    await test.step("Pay now", async () => {
-      await this.page.click(this.payNowButton);
-      await this.page.waitForLoadState("load");
-    });
+    await this.page.click(this.payNowButton);
+    await this.page.waitForLoadState("load");
   }
 }
