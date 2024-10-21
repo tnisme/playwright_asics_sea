@@ -39,6 +39,10 @@ export class Product {
     return this["price"];
   }
 
+  setPrice(price: number): void {
+    this.price = price;
+  }
+
   getQuantity(): number {
     return this["quantity"];
   }

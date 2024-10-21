@@ -1,6 +1,6 @@
 import { Page } from "@playwright/test";
-import CheckoutPage from "../../checkout/method/CheckoutPage";
 import ShoppingCartLocator from "../locator/ShoppingCartLocator";
+import { step } from "@fixture/Fixture";
 
 export default class ShoppingCartPage extends ShoppingCartLocator {
   private page: Page;
@@ -9,10 +9,10 @@ export default class ShoppingCartPage extends ShoppingCartLocator {
     this.page = page;
   }
 
-  async checkout(): Promise<CheckoutPage> {
+  @step("Checkout")
+  async checkout() {
     await this.page.click(this.checkoutButton);
     await this.page.waitForLoadState("load");
-    return new CheckoutPage(this.page);
   }
 
   async isHasDiscountOrder(): Promise<boolean> {

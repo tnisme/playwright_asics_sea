@@ -6,11 +6,11 @@ import Browser from "./src/utility/Browser";
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-import dotenv from 'dotenv';
-import path from 'path';
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+import dotenv from "dotenv";
+import path from "path";
+dotenv.config({ path: path.resolve(__dirname, ".env") });
 
-const timeInMin: number = 60 * 1000;
+const timeInSec: number = 1000;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -62,14 +62,14 @@ export default defineConfig({
       args: ["--start-maximized", "--disable-extensions", "--disable-plugins"],
       headless: false,
       timeout:
-        Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInMin,
+        Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInSec,
       slowMo: 500,
       downloadsPath: "./test-results/downloads",
     },
     viewport: null,
-    actionTimeout: Number.parseInt(process.env.ACTION_TIMEOUT, 10) * timeInMin,
+    actionTimeout: Number.parseInt(process.env.ACTION_TIMEOUT, 10) * timeInSec,
     navigationTimeout:
-      Number.parseInt(process.env.NAVIGATION_TIMEOUT, 10) * timeInMin,
+      Number.parseInt(process.env.NAVIGATION_TIMEOUT, 10) * timeInSec,
     screenshot: {
       mode: "only-on-failure",
       fullPage: true,
@@ -78,10 +78,20 @@ export default defineConfig({
 
   projects: [
     {
-      name: "local",
+      name: "en-SG",
+      use: {
+        locale: "en-SG",
+      },
       /* https://playwright.dev/docs/test-configuration#filtering-tests */
-      testMatch:
-        "*/tests/sg/Guest_CheckoutVisaCard_StandardDeliveryTest.spec.ts",
+      testMatch: "*/tests/sg/*.spec.ts",
+    },
+    {
+      name: "en-MY",
+      use: {
+        locale: "en-MY",
+      },
+      /* https://playwright.dev/docs/test-configuration#filtering-tests */
+      testMatch: "*/tests/my/*.ts",
     },
   ],
 });

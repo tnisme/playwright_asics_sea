@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import WorldPayLocator from "../locator/WorldPayLocator";
-import { CreditCard } from "../../../entity/customer/CreditCard";
-import ThankYouPage from "../../checkout/method/ThankYouPage";
+import { CreditCard } from "@entity/customer/CreditCard";
+import { step } from "@fixture/Fixture";
 
 export default class WorldPayPage extends WorldPayLocator {
   private page: Page;
@@ -10,6 +10,7 @@ export default class WorldPayPage extends WorldPayLocator {
     this.page = page;
   }
 
+  @step("Fill in card")
   async fillInCard(card: CreditCard) {
     await this.page.fill(this.cardNumber, card.getNumber());
     await this.page.fill(this.cardCVV, card.getCid());
@@ -18,9 +19,9 @@ export default class WorldPayPage extends WorldPayLocator {
     await this.page.fill(this.cardName, card.getName());
   }
 
-  async makePayment(): Promise<ThankYouPage> {
+  @step("Make payment")
+  async makePayment() {
     await this.page.click(this.makePaymentButton);
     await this.page.waitForLoadState("load");
-    return new ThankYouPage(this.page);
   }
 }

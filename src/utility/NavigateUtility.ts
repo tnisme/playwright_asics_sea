@@ -1,9 +1,10 @@
 import { Page } from "@playwright/test";
-import HomePage from "@pages/utility/method/HomePage";
+import HomePage from "@pages/utility/step/HomePage";
+import { test } from "@fixture/Fixture";
 
 export default class NavigateUtility {
   public static async navigateToHomePage(page: Page): Promise<HomePage> {
-    await page.goto(process.env[process.env.LOCATE.toUpperCase()]);
+    await page.goto(process.env[test.info().project.use.locale.toUpperCase()]);
     await page.waitForLoadState("load");
     return new HomePage(page);
   }

@@ -10,18 +10,19 @@ import { CreditCardType } from "@entity/data/CreditCardType";
 import * as fs from "fs";
 import * as path from "path";
 import { faker } from "@faker-js/faker/locale/en"; //https://www.npmjs.com/package/@faker-js/faker
+import { test } from "@fixture/Fixture";
 
 const customerData = fs.readFileSync(
   path.join(__dirname, "..", "data", "account.json"),
-  "utf8",
+  "utf8"
 );
 const productData = fs.readFileSync(
   path.join(__dirname, "..", "data", "product.json"),
-  "utf8",
+  "utf8"
 );
 const cardData = fs.readFileSync(
   path.join(__dirname, "..", "data", "card.json"),
-  "utf8",
+  "utf8"
 );
 // const productData = fs.readFileSync('src/data/product.json', 'utf8'); TODO why can not find file if using this?
 const customerJSON = JSON.parse(customerData);
@@ -31,7 +32,8 @@ const cardJSON = JSON.parse(cardData);
 export class DataTest {
   static getCustomerInformation(): Customer {
     const customer =
-      customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
+        .customer1;
     return CustomerBuilder.setFirstName(customer.firstname)
       .setLastName(customer.lastname)
       .setEmail(customer.email)
@@ -41,10 +43,23 @@ export class DataTest {
       .build();
   }
 
+  static getRandomCustomerInformation(): Customer {
+    const customer =
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
+        .customer1;
+    return CustomerBuilder.setFirstName(faker.person.firstName())
+      .setLastName(faker.person.lastName())
+      .setEmail(faker.internet.email())
+      .setPassword(faker.internet.password())
+      .setGender(customer.gender)
+      .setBirthDay(customer.birthday)
+      .build();
+  }
+
   static getDefaultAddress(): Address {
     const defaultAddress =
-      customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1
-        .default;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
+        .customer1.default;
     return AddressBuilder.setTitle(defaultAddress.title)
       .setFirstName(defaultAddress.firstname)
       .setLastName(defaultAddress.lastname)
@@ -60,8 +75,8 @@ export class DataTest {
 
   static getRandomAddress(): Address {
     const defaultAddress =
-      customerJSON[process.env.ENVIRONMENT][process.env.LOCATE].customer1
-        .default;
+      customerJSON[process.env.ENVIRONMENT][test.info().project.use.locale]
+        .customer1.default;
     return AddressBuilder.setTitle(defaultAddress.title)
       .setFirstName(faker.person.firstName())
       .setLastName(faker.person.lastName())
@@ -77,7 +92,9 @@ export class DataTest {
 
   static getVariationProduct1(): VariationProduct {
     const product =
-      variationProductJSON[process.env.ENVIRONMENT][process.env.LOCATE].vp1;
+      variationProductJSON[process.env.ENVIRONMENT][
+        test.info().project.use.locale
+      ].vp1;
     return (
       VariationProductBuilder.setName(product.name)
         .setSku(product.sku)
@@ -88,7 +105,7 @@ export class DataTest {
         .setSize(product.size)
         .setColor(product.color)
         .setWidth(product.width)
-        .setQuantity(product.quantity)
+        .setQuantity(product.qty)
         .setErpProductId(product.erpProductId)
         .setWarehouseId(product.warehouseId)
         .build()
@@ -97,7 +114,9 @@ export class DataTest {
 
   static getVariationProduct2(): VariationProduct {
     const product =
-      variationProductJSON[process.env.ENVIRONMENT][process.env.LOCATE].vp2;
+      variationProductJSON[process.env.ENVIRONMENT][
+        test.info().project.use.locale
+      ].vp2;
     return (
       VariationProductBuilder.setName(product.name)
         .setSku(product.sku)
@@ -108,7 +127,7 @@ export class DataTest {
         .setSize(product.size)
         .setColor(product.color)
         .setWidth(product.width)
-        .setQuantity(product.quantity)
+        .setQuantity(product.qty)
         .setErpProductId(product.erpProductId)
         .setWarehouseId(product.warehouseId)
         .build()
@@ -116,7 +135,7 @@ export class DataTest {
   }
 
   static getCard(creditCardType: CreditCardType): CreditCard {
-    const card = cardJSON[process.env.LOCATE][creditCardType];
+    const card = cardJSON[test.info().project.use.locale][creditCardType];
     return CreditCardBuilder.setName(card.name)
       .setNumber(card.number)
       .setMonth(card.month)
@@ -124,5 +143,16 @@ export class DataTest {
       .setCid(card.cid)
       .setType(creditCardType)
       .build();
+  }
+
+  static getCurrency(): string {
+    const currencyMap: { [key: string]: string } = {
+      "en-SG": "SGD", // Singapore Dollar
+      "en-MY": "MYR", // Malaysian Ringgit
+      "en-PH": "PHP", // Philippine Peso
+      "th-TH": "THB", // Thai Baht
+      "vi-VN": "VND", // Vietnamese Dong
+    };
+    return currencyMap[test.info().project.use.locale] || "USD";
   }
 }

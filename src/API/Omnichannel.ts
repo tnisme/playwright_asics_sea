@@ -20,7 +20,7 @@ export class Omnichannel {
           "Content-Type": RESTConstants.CONTENT_X_WWW_FORM_URLENCODED,
           Authorization: "Basic " + process.env.AUTHORIZATION_API,
         },
-      },
+      }
     );
 
     const responseBody = await response.json();
@@ -31,7 +31,7 @@ export class Omnichannel {
 
   private static async importImpexApi(
     request: APIRequestContext,
-    token: string,
+    token: string
   ): Promise<string> {
     const body = {
       fileFormat: "JSON",
@@ -47,7 +47,7 @@ export class Omnichannel {
           "Content-Type": RESTConstants.CONTENT_JSON,
           Authorization: `Bearer ${token}`,
         },
-      },
+      }
     );
     const responseBody = await response.json();
     const uploadLink = responseBody.uploadLink;
@@ -56,7 +56,7 @@ export class Omnichannel {
 
   public static async uploadFile(
     request: APIRequestContext,
-    filePath: string,
+    filePath: string
   ): Promise<string> {
     const token = await this.getToken(request);
     const uploadLink = await this.importImpexApi(request, token);
@@ -71,7 +71,7 @@ export class Omnichannel {
         multipart: {
           fileUpload: fs.createReadStream(filePath),
         },
-      },
+      }
     );
 
     const responseBody = await response.json();

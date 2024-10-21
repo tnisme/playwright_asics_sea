@@ -1,5 +1,5 @@
 {
-  "en_SG": {
+  "en-SG": {
     "Visa": {
       "name": "test",
       "number": "4444333322221111",
@@ -169,7 +169,7 @@
       "type": "Master"
     }
   },
-  "en_MY": {
+  "en-MY": {
     "Visa": {
       "name": "test",
       "number": "4111111111111111",
@@ -219,7 +219,7 @@
       "type": "Visa"
     }
   },
-  "en_PH": {
+  "en-PH": {
     "Visa": {
       "name": "test",
       "number": "4333880000200019",

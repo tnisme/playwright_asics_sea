@@ -5,4 +5,5 @@ export default class ProductDetailLocator {
 
   protected addToCartButton = "#id-add-to-cart";
   protected closeCartDrawButton = "div.close-cart-draw";
+  protected price = "#product-content span.price-sales";
 }

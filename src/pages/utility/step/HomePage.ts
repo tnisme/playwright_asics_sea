@@ -1,43 +1,46 @@
 import { Page } from "@playwright/test";
-import ProductListPage from "../../product/method/ProductListPage";
-import LoginPage from "./LoginPage";
-import ShoppingCartPage from "../../cart/method/ShoppingCartPage";
 import HomeLocator from "../locator/HomeLocator";
+import WaitUtility from "@utility/WaitUtility";
+import { step } from "@fixture/Fixture";
 
 export default class HomePage extends HomeLocator {
   private page: Page;
+  private waitUtility: WaitUtility;
   constructor(page: Page) {
     super();
     this.page = page;
+    this.waitUtility = new WaitUtility(this.page);
   }
 
   async isGuest(): Promise<boolean> {
     return await this.page.isVisible(this.logout, { timeout: 2000 });
   }
 
-  async goToLoginPage(): Promise<LoginPage> {
+  @step("Go to login page")
+  async goToLoginPage() {
     await this.page.click(this.myAccount);
     await this.page.waitForLoadState("load");
     await this.page.click(this.login);
     await this.page.waitForLoadState("load");
-    return new LoginPage(this.page);
   }
 
-  async search(key: string): Promise<ProductListPage> {
+  @step("Search product")
+  async search(key: string) {
+    const currentUrl = this.page.url();
     await this.page.fill(this.searchLocator, key);
     await this.page.keyboard.press("Enter");
+    await this.waitUtility.waitUrlChange(currentUrl);
     await this.page.waitForLoadState("load");
-    return new ProductListPage(this.page);
   }
 
   async isCartEmpty(): Promise<boolean> {
     return await this.page.isVisible(this.miniCartCounter, { timeout: 3000 });
   }
 
-  async viewCart(): Promise<ShoppingCartPage> {
+  @step("View cart")
+  async viewCart() {
     await this.page.click(this.cart, { delay: 500 });
     await this.page.click(this.viewCartButton);
     await this.page.waitForLoadState("load");
-    return new ShoppingCartPage(this.page);
   }
 }

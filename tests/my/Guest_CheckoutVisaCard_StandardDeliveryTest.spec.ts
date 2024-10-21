@@ -6,7 +6,7 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
   productDetailPage,
   shoppingCartPage,
   checkoutPage,
-  worldPayPage,
+  molpayPage,
   thankYouPage,
   randomCustomerInformation,
   variantProduct1,
@@ -46,10 +46,16 @@ test("Guest_CheckoutVisaCard_StandardDeliveryTestSpec", async ({
 
   await checkoutPage.placeOrder();
 
-  await worldPayPage.fillInCard(visaCard);
-  await worldPayPage.makePayment();
-  await thankYouPage.getOrderNumber();
+  await molpayPage.fillInCard(visaCard);
+  await molpayPage.selectCountry();
+  await molpayPage.fillBankInformation("Bank Name", "Description");
+  await molpayPage.agreeTerms();
+  await molpayPage.payOnline();
+  await molpayPage.requestOTP();
+  await molpayPage.fillInOTP();
+  await molpayPage.payNow();
 
+  await thankYouPage.getOrderNumber();
   await thankYouPage.checkProduct(variantProduct1);
   await thankYouPage.checkShippingFee(shippingFee);
   await thankYouPage.checkSummarySubtotalPrice(subTotal);

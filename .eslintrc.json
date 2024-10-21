@@ -14,13 +14,9 @@
     "sourceType": "module",
     "ecmaVersion": "latest"
   },
-  "plugins": [
-    "@typescript-eslint",
-    "playwright"
-  ],
+  "plugins": ["@typescript-eslint", "playwright"],
   "ignorePatterns": ["node_modules/*"],
-  "rules": {
-  },
+  "rules": {},
   "settings": {
     "import/resolver": {
       "typescript": {}
