@@ -28,7 +28,24 @@ export class PaymentMethodUtils {
   static getName(paymentMethod: PaymentMethod): string {
     switch (paymentMethod) {
       case PaymentMethod.CREDIT_CARD:
+        return this.getPaymentMethodCreditCardName();
+      default:
+        return "invalid";
+    }
+  }
+
+  static getPaymentMethodCreditCardName(): string {
+    switch (test.info().project.use.locale) {
+      case "en-SG":
         return "VISA & MASTERCARD";
+      case "en-MY":
+        return "Molpay";
+      case "en-PH":
+        return "Credit card/Debit Card";
+      case "th-TH":
+        return "บัตรเครดิต";
+      case "vi-VN":
+        return "Onepay";
       default:
         return "invalid";
     }

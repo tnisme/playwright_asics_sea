@@ -171,6 +171,19 @@ export default class ThankYouPage extends ThankYouLocator {
   }
 
   private formatAddress(address: Address) {
+    switch (test.info().project.use.locale) {
+      case "en-SG":
+        return this.formatAddressSG(address);
+      case "en-MY":
+        return this.formatAddressMY(address);
+      case "vi-VN":
+        return this.formatAddressVN(address);
+      default:
+        return "invalid";
+    }
+  }
+
+  private formatAddressSG(address: Address) {
     return (
       address.getFirstName() +
       " " +
@@ -180,6 +193,38 @@ export default class ThankYouPage extends ThankYouLocator {
       address.getCity() +
       ", " +
       address.getZipCode() +
+      address.getCountry()
+    );
+  }
+
+  private formatAddressMY(address: Address) {
+    return (
+      address.getFirstName() +
+      " " +
+      address.getLastName() +
+      address.getAddress1() +
+      address.getAddress2() +
+      address.getCity() +
+      ", " +
+      address.getState() +
+      " " +
+      address.getZipCode() +
+      address.getCountry()
+    );
+  }
+
+  private formatAddressVN(address: Address) {
+    return (
+      address.getFirstName() +
+      " " +
+      address.getLastName() +
+      address.getAddress1() +
+      address.getAddress2() +
+      address.getWard() +
+      ", " +
+      address.getState() +
+      ", " +
+      address.getCity() +
       address.getCountry()
     );
   }

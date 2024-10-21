@@ -7,6 +7,7 @@ import ShoppingCartPage from "@pages/cart/step/ShoppingCartPage";
 import CheckoutPage from "@pages/checkout/step/CheckoutPage";
 import WorldPayPage from "@pages/worldPay/step/WorldPayPage";
 import ThankYouPage from "@pages/checkout/step/ThankYouPage";
+import MolpayPage from "@pages/molpay/step/MolpayPage";
 
 type PageFixture = {
   page: Page;
@@ -16,6 +17,7 @@ type PageFixture = {
   shoppingCartPage: ShoppingCartPage;
   checkoutPage: CheckoutPage;
   worldPayPage: WorldPayPage;
+  molpayPage: MolpayPage;
   thankYouPage: ThankYouPage;
 };
 
@@ -47,6 +49,10 @@ export const test = base.extend<PageFixture>({
 
   worldPayPage: async ({ page }, use) => {
     await use(new WorldPayPage(page));
+  },
+
+  molpayPage: async ({ page }, use) => {
+    await use(new MolpayPage(page));
   },
 
   thankYouPage: async ({ page }, use) => {

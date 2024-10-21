@@ -15,10 +15,12 @@ The main goal of this project is to automate the testing of key user interaction
 To set up and run the tests locally, follow the steps below:
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/username/asics-playwright-tests.git
 
    ```
+
 2. **Navigate to the repository**:
    ```bash
    cd asics-playwright-tests

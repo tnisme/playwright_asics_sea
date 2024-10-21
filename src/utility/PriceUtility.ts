@@ -8,7 +8,9 @@ export default class PriceUtility {
     const formattedPrice = new Intl.NumberFormat(locale, {
       style: "currency",
       currency: currency,
-    }).format(value);
+    })
+      .format(value)
+      .replace(/\u00A0/g, " ");
 
     // For specific cases like Singapore that require "S$" instead of "$"
     if (locale === "en-SG") {

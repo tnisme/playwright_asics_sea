@@ -83,9 +83,7 @@ export default defineConfig({
         locale: "en-SG",
       },
       /* https://playwright.dev/docs/test-configuration#filtering-tests */
-      testMatch:
-        "*/tests/sg/Guest_CheckoutVisaCard_StandardDeliveryTest.spec.ts",
-      // "*/tests/sg/testSG.ts",
+      testMatch: "*/tests/sg/*.spec.ts",
     },
     {
       name: "en-MY",
@@ -93,7 +91,7 @@ export default defineConfig({
         locale: "en-MY",
       },
       /* https://playwright.dev/docs/test-configuration#filtering-tests */
-      testMatch: "*/tests/my/testMY.ts",
+      testMatch: "*/tests/my/*.ts",
     },
   ],
 });

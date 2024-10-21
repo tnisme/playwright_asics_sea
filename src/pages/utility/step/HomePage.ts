@@ -1,6 +1,7 @@
 import { Page, test } from "@playwright/test";
 import HomeLocator from "../locator/HomeLocator";
 import WaitUtility from "@utility/WaitUtility";
+import { step } from "@fixture/Fixture";
 
 export default class HomePage extends HomeLocator {
   private page: Page;
@@ -24,14 +25,13 @@ export default class HomePage extends HomeLocator {
     });
   }
 
+  @step("Search product")
   async search(key: string) {
-    await test.step(`search product: ${key}`, async () => {
-      const currentUrl = this.page.url();
-      await this.page.fill(this.searchLocator, key);
-      await this.page.keyboard.press("Enter");
-      await this.waitUtility.waitUrlChange(currentUrl);
-      await this.page.waitForLoadState("load");
-    });
+    const currentUrl = this.page.url();
+    await this.page.fill(this.searchLocator, key);
+    await this.page.keyboard.press("Enter");
+    await this.waitUtility.waitUrlChange(currentUrl);
+    await this.page.waitForLoadState("load");
   }
 
   async isCartEmpty(): Promise<boolean> {
