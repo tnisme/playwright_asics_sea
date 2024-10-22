@@ -155,4 +155,8 @@ export class DataTest {
     };
     return currencyMap[test.info().project.use.locale] || "USD";
   }
+
+  static getLocale(): string {
+    return test.info().project.use.locale;
+  }
 }

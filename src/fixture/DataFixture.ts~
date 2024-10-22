@@ -26,6 +26,7 @@ const variationProductJSON = JSON.parse(
 const cardJSON = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "data", "card.json"), "utf8")
 );
+console.log("fixture");
 export type fixtureData = {
   customerInformation: Customer;
   randomCustomerInformation: Customer;
@@ -172,5 +173,5 @@ export const test = base.extend<fixtureData>({
     });
   },
 
-  currency: ["SGD", { option: true }],
+  currency: ["USD", {option: true}]
 });
