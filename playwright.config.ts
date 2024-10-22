@@ -1,5 +1,4 @@
 import { defineConfig } from "@playwright/test";
-// import * as dotenv from 'dotenv';
 import Browser from "./src/utility/Browser";
 
 /**
@@ -8,6 +7,7 @@ import Browser from "./src/utility/Browser";
  */
 import dotenv from "dotenv";
 import path from "path";
+import { fixtureData } from "@fixture/DataFixture";
 dotenv.config({ path: path.resolve(__dirname, ".env") });
 
 const timeInSec: number = 1000;
@@ -15,18 +15,13 @@ const timeInSec: number = 1000;
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-export default defineConfig({
+export default defineConfig<fixtureData>({
   testDir: "./tests",
   /* Run tests in files in parallel */
-  // TODO turn off fully parallel to not run parallel in file
+  // turn off fully parallel to not run parallel in file
   fullyParallel: false,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: Number.parseInt(process.env.RETRIES, 10),
   /* Opt out of parallel tests on CI. */
   workers: Number.parseInt(process.env.PARALLEL_THREAD, 10),
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   timeout: 0,
   reporter: [
     ["list"],
@@ -49,9 +44,6 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: process.env.BASE_URL,
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
-
     /* https://playwright.dev/docs/api/class-testoptions#test-options-browser-name */
     browserName: Browser.type(process.env.BROWSER.toLowerCase()),
 
@@ -64,7 +56,6 @@ export default defineConfig({
       timeout:
         Number.parseInt(process.env.BROWSER_LAUNCH_TIMEOUT, 10) * timeInSec,
       slowMo: 500,
-      downloadsPath: "./test-results/downloads",
     },
     viewport: null,
     actionTimeout: Number.parseInt(process.env.ACTION_TIMEOUT, 10) * timeInSec,
@@ -81,6 +72,7 @@ export default defineConfig({
       name: "en-SG",
       use: {
         locale: "en-SG",
+        currency: "SGD",
       },
       /* https://playwright.dev/docs/test-configuration#filtering-tests */
       testMatch: "*/tests/sg/*.spec.ts",
@@ -89,9 +81,10 @@ export default defineConfig({
       name: "en-MY",
       use: {
         locale: "en-MY",
+        currency: "MYR",
       },
       /* https://playwright.dev/docs/test-configuration#filtering-tests */
-      testMatch: "*/tests/my/*.ts",
+      testMatch: "*/tests/my/*.spec.ts",
     },
   ],
 });
