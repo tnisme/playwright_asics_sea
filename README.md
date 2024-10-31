@@ -46,17 +46,17 @@ To configure the tests, follow these steps:
 
 ### Run tests:
 
-1.  To run full test suite:
+1. To run full test suite:
 
-    ```bash
-    npm run test
-    ```
+   ```bash
+   npm run test
+   ```
 
-2.  To run a single test:
+2. To run a single test:
 
-    ```bash
-    npm run test <path_to_test_file>
-    ```
+   ```bash
+   npm run test <path_to_test_file>
+   ```
 
 ## View report:
 
