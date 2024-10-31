@@ -28,25 +28,21 @@ export default class CheckoutPage extends CheckoutLocator {
     await this.setShippingAddress1(address.getAddress1());
     await this.setShippingPhoneNumber(address.getPhoneNumber());
 
-    // eslint-disable-next-line playwright/no-conditional-in-test
     if (locate == "vi-VN") {
       await this.setShippingCity(address.getCity());
       await this.setShippingState(address.getState());
       await this.setShippingWard(address.getWard());
     } else {
-      // eslint-disable-next-line playwright/no-conditional-in-test
       if (locate != "en-SG") {
         await this.setShippingState(address.getState());
         await this.setShippingCity(address.getCity());
       }
       await this.setShippingPostalCode(address.getZipCode());
-      // eslint-disable-next-line playwright/no-conditional-in-test
       if (locate == "en-PH") {
         await this.setShippingBangaray(address.getBarangay());
       }
     }
 
-    // eslint-disable-next-line playwright/no-conditional-in-test
     if (customer) {
       await this.setEmailAddress(customer.getEmail());
     }
@@ -159,7 +155,6 @@ export default class CheckoutPage extends CheckoutLocator {
   async checkProduct(product: Product) {
     await this.checkProductName(product);
     await this.checkProductSubtotalPrice(product);
-    // eslint-disable-next-line playwright/no-conditional-in-test
     if (product.getProductType() === ProductType.VARIATION) {
       await this.checkProductSize(product);
       await this.checkProductColor(product);

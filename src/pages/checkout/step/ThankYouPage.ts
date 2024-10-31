@@ -28,7 +28,6 @@ export default class ThankYouPage extends ThankYouLocator {
   async checkProduct(product: Product) {
     await this.checkProductName(product);
     await this.checkProductSubtotalPrice(product);
-    // eslint-disable-next-line playwright/no-conditional-in-test
     if (product.getProductType() === ProductType.VARIATION) {
       await this.checkProductSize(product);
       await this.checkProductColor(product);
